@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom'
 
 export default function Navbar({ currentUser, handleLogout }) {
+	
 	 const loggedIn = (
 		<>
 			{/* if the user is logged in... */}
-			<Link to="/">
+			<Link to="/" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
 				<span onClick={handleLogout}>logout</span>
 			</Link>
 
-			<Link to="/profile">
+			<Link to="/profile" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
 				profile
 			</Link>
 		</>
@@ -17,11 +18,11 @@ export default function Navbar({ currentUser, handleLogout }) {
 	 const loggedOut = (
 		<>
 			{/* if the user is not logged in... */}
-			<Link to="/register">
+			<Link to="/register" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
 				register
 			</Link>
 
-			<Link to="/login">
+			<Link to="/login" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
 				login
 			</Link>
 		</>
@@ -30,7 +31,7 @@ export default function Navbar({ currentUser, handleLogout }) {
 	return (
 		<nav>
 			{/* user always sees this section */}
-			<Link to="/">
+			<Link to="/" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
 				<p>User App</p>
 			</Link>
 
@@ -38,3 +39,4 @@ export default function Navbar({ currentUser, handleLogout }) {
 		</nav>
 	)
 }
+
