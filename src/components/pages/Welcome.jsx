@@ -3,6 +3,7 @@ export default function Welcome() {
 		<div className='bg-black h-screen flex flex-col'>
 			<h1 className= 'text-8xl mb-14 font-code text-primary'>MERGE REQUEST</h1>
 			<h2 className= 'text-5xl mb-14 font-code text-secondary'>A dating app for developers to develop meaningful relationships</h2>
+			<img src='/MergeRequestLogo.png' style={{height: 250, width: 300, marginLeft: 450}}></img>
 		</div>
 
 	)
