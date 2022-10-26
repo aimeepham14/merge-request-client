@@ -9,7 +9,9 @@ export default function Profile({ currentUser, handleLogout}) {
 		firstName: currentUser.firstName,
 		biography: currentUser.biography,
 		photo: currentUser.photo,
-		favoritePLanguage: currentUser.favoritePLanguage
+		favoritePLanguage: currentUser.favoritePLanguage,
+		city: currentUser.city,
+		lookingFor: currentUser.lookingFor
 	})
 	const { userId } = useParams()
 
@@ -52,25 +54,14 @@ export default function Profile({ currentUser, handleLogout}) {
 	<div class="min-h-screen bg-gray-700 flex justify-center items-center">
 		<div class="max-w-lg container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
 			<div>
-				<h1 class="mt-2 ml-4 font-bold text-gray-800 cursor-pointer hover:text-gray-900 transition duration-100 text-5xl font-code text-secondary">{currentUser.firstName}</h1>
+				<h1 class="mt-2 ml-4 font-bold text-gray-800 cursor-pointer hover:text-gray-900 transition duration-100 text-6xl font-code text-orange">{currentUser.firstName}</h1>
 			</div>
 			<img class="w-full cursor-pointer" src={currentUser.photo}  alt="" />
 			<div class="flex p-4 justify-between">
-				<div class="flex items-center space-x-2">
-					<h2 class="text-gray-800 cursor-pointer text-2xl mb-14 font-code text-secondary">Testing with a really really long biography. Blah blah adding a pick up message here{currentUser.biography}</h2>
+				<div class="items-center space-x-2">
+					<h2 class="text-gray-800 cursor-pointer text-1xl mb-2  text-left font-code text-orange">{currentUser.city}, NY</h2>
+					<h2 class="text-gray-800 cursor-pointer text-2xl mb-2 text-left font-code text-secondary"> Testing with a really really long biography. Blah blah adding a pick up message here. {currentUser.biography}</h2>
 				</div>
-			{/* <div class="flex space-x-2">
-				<div class="flex space-x-1 items-center">
-				<span>
-					<img src='https://i.imgur.com/A41MUu7.jpg?2' />
-				</span>
-				</div>
-				<div class="flex space-x-1 items-center">
-				<span>
-					<img src="https://i.imgur.com/XnaQj9C.jpg?2"/>
-				</span>
-				</div>
-			</div> */}
 			</div>
 		</div>
 	</div>
