@@ -69,7 +69,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 				photo,
 				favoritePLanguage
 			}
-			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}api-v1/users/register`, reqBody)
+			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/register`, reqBody)
 
 			// save the token in localstorage
 			const { token } = response.data
