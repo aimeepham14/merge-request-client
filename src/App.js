@@ -10,6 +10,7 @@ import Profile from './components/pages/Profile'
 import Register from './components/pages/Register'
 import Welcome from './components/pages/Welcome'
 import Navbar from './components/Navbar'
+import Swipe from './components/pages/Swipe'
 import './App.css'
 import jwt_decode from 'jwt-decode'
 
@@ -71,6 +72,11 @@ function App() {
             path="/profile"
             element={currentUser ? <Profile handleLogout={handleLogout} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : <Navigate to="/login" />}
           />
+          <Route 
+            path="/swipe"
+            element={<Swipe currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+          />
+
 
         </Routes>
       </div>
