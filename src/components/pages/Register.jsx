@@ -9,17 +9,18 @@ export default function Register({ currentUser, setCurrentUser }) {
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [birthDay, setBirthDay] = useState('');
-	const [birthMonth, setBirthMonth] = useState('');
+	const [birthDay, setBirthDay] = useState('1');
+	const [birthMonth, setBirthMonth] = useState('1');
 	const [birthYear, setBirthYear] = useState('');
 	const [gender, setGender] = useState('');
 	const [city, setCity] = useState('');
 	const [biography, setBiography] = useState('');
 	const [lookingFor, setLookingFor] = useState('');
 	const [msg, setMsg] = useState('');
+	const [favoritePLanguage, setFavoritePLanguage] = useState('')
 
 	//CLOUDINARY
-	const [photos, setPhotos] = useState('');
+	const [photo, setPhoto] = useState('');
 		
 	const [loading, setLoading] = useState(false);
 	
@@ -32,12 +33,10 @@ export default function Register({ currentUser, setCurrentUser }) {
 			try {
 				const response = await axios.post(`https://api.cloudinary.com/v1_1/dspcnzoiy/image/upload`,formData)
 				console.log(response.data)
-				setPhotos(response.data.url)
+				setPhoto(response.data.url)
+				// console.log(photos)
 			}catch(err){
 				console.warn(err)
-			}finally {
-				console.log(photos)
-				console.log(loading)
 			}
 	}
 
@@ -58,7 +57,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 				city,
 				biography,
 				lookingFor,
-				photos
+				photo
 
 			}
 			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/register`, reqBody)
@@ -232,6 +231,24 @@ export default function Register({ currentUser, setCurrentUser }) {
 					onChange={e => setBiography(e.target.value)}
 					value={biography}
 				/>
+				<label for="favoriteLanguage">Favorite Programming Language:</label>
+				<select id="favoriteLanguage" name="favoritePLanguage" 
+				onChange={e => setFavoritePLanguage(e.target.value)}
+					value={favoritePLanguage} required>
+					<option value="Python">Python</option>
+					<option value="JavaScript">Javascript</option>
+					<option value="Java">Java</option>
+					<option value="C#">C#</option>
+					<option value="C">C</option>
+					<option value="C++">C++</option>
+					<option value="GO">GO</option>
+					<option value="R">R</option>
+					<option value="Swift">Swift</option>
+					<option value="PHP">PHP</option>
+					<option value="HTML">HTML</option>
+					<option value="Kotlin">Kotlin</option>
+					<option value="Other">Other</option>
+				</select>
 				<p>Looking For:</p>
 				<label htmlFor='lookingFor'>Man</label>
 				<input 
@@ -260,14 +277,14 @@ export default function Register({ currentUser, setCurrentUser }) {
 					onChange={e => setLookingFor(e.target.value)}
 					value='Friends'
 				/>
-				<label htmlFor='lookingFor'>More</label>
+				<label htmlFor='lookingFor'>No Preference</label>
 				<input 
 					type="radio"
 					id="lookingFor"
 					name="lookingFor"
-					placeholder='More'
+					placeholder='No Preference'
 					onChange={e => setLookingFor(e.target.value)}
-					value='More'
+					value='None'
 				/>
 				
 
@@ -276,12 +293,11 @@ export default function Register({ currentUser, setCurrentUser }) {
 
 			<div>
 				<h1></h1>
+				<form></form>
 				<label htmlFor='profileimage'>Upload a profile picture:</label>
 				<input type='file' name='file'id='profileimage' onChange={uploadImage}></input>
 				<h1>Account Preview</h1>
-				{ loading ? <img src={photos}></img>: <img src='https://pbs.twimg.com/profile_images/1564398871996174336/M-hffw5a_400x400.jpg'></img> }
-				{/* { loading == 2 ? <img src={photos[1].url}></img>: <img src='https://pbs.twimg.com/profile_images/1564398871996174336/M-hffw5a_400x400.jpg'></img> }
-				{ loading == 3 ? <img src={photos[2].url}></img>: <img src='https://pbs.twimg.com/profile_images/1564398871996174336/M-hffw5a_400x400.jpg'></img> } */}
+				{ loading ? <img src={photo} style={{height: 250}}></img>: <img src='https://pbs.twimg.com/profile_images/1564398871996174336/M-hffw5a_400x400.jpg'></img> }
 				<p>Biography:</p>
 				<p>{biography}</p>
 			</div>
