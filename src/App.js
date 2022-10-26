@@ -13,6 +13,7 @@ import Navbar from './components/Navbar'
 import Swipe from './components/pages/Swipe'
 import './App.css'
 import jwt_decode from 'jwt-decode'
+import Requests from './components/pages/Requests'
 
 function App() {
   // the currently logged in user will be stored up here in state
@@ -75,6 +76,10 @@ function App() {
           <Route 
             path="/swipe"
             element={<Swipe currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+          />
+          <Route 
+            path="/requests"
+            element={<Requests currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
           />
 
 
