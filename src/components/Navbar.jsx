@@ -6,6 +6,9 @@ export default function Navbar({ currentUser, handleLogout }) {
 	 const loggedIn = (
 		<>
 			{/* if the user is logged in... */}
+			<Link to="/swipe/:userId" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
+				swipe
+			</Link>
 			<Link to="/" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-4">
 				<span onClick={handleLogout}>logout</span>
 			</Link>
