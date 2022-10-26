@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-export default function Profile({ currentUser, handleLogout }) {
+export default function Profile({ currentUser, handleLogout}) {
 	// state for the secret message (aka user privilaged data)
 	const [msg, setMsg] = useState('')
+
 
 	// useEffect for getting the user data and checking auth
 	useEffect(() => {
@@ -39,13 +40,13 @@ export default function Profile({ currentUser, handleLogout }) {
 
 	return (
 		<div className='bg-gray h-screen flex flex-col'>
-			<h1 className= 'text-2xl mb-14 font-code text-primary'>Hello, {currentUser.name}</h1>
+			<h1 className= 'text-2xl mb-14 font-code text-primary'>Hello,{currentUser.firstName}</h1>
 
 			<p className= 'text-4xl mb-14 font-code text-yellow'>your email is {currentUser.email}</p>
 
 			<h2 className= 'text-2xl mb-14 font-code text-orange'>Here is the secret message that is only availible to users of User App:</h2>
 
-			<h3>{msg}</h3>
 		</div>
 	)
 }
+
