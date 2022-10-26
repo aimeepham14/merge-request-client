@@ -57,8 +57,8 @@ export default function Register({ currentUser, setCurrentUser }) {
 				city,
 				biography,
 				lookingFor,
-				photo
-
+				photo,
+				favoritePLanguage
 			}
 			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/register`, reqBody)
 
