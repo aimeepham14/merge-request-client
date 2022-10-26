@@ -1,12 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 
 export default function Navbar({ currentUser, handleLogout }) {
+	const { userId } = useParams()
 	
-	 const loggedIn = (
+	 const loggedIn = () => {
+		return(
 		<>
 			{/* if the user is logged in... */}
-			<Link to="/swipe/:userId" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
+			<Link to={`/swipe/${currentUser.id}`} class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
 				swipe
 			</Link>
 			<Link to="/" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-4">
@@ -17,9 +19,11 @@ export default function Navbar({ currentUser, handleLogout }) {
 				profile
 			</Link>
 		</>
-	 )
+		)
+	 }
 
-	 const loggedOut = (
+	 const loggedOut = () => {
+		return(
 		<>
 			{/* if the user is not logged in... */}
 			<Link to="/register" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
@@ -30,7 +34,8 @@ export default function Navbar({ currentUser, handleLogout }) {
 				Login
 			</Link>
 		</>
-	 )
+	 	)
+	 }
 
 	return (
 		<nav class="flex items-center justify-between flex-wrap bg-cyan-600 p-6">
@@ -41,7 +46,7 @@ export default function Navbar({ currentUser, handleLogout }) {
 						<p>Home</p>
 					</Link>
 
-					{currentUser ? loggedIn : loggedOut}
+					{currentUser ? loggedIn() : loggedOut()}
 				</div>
 			</div>
 		</nav>
