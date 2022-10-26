@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 
 export default function Login({ currentUser, setCurrentUser }) {
 	// state for the controlled form
@@ -44,32 +44,65 @@ export default function Login({ currentUser, setCurrentUser }) {
 	}
 
 	return (
+		
+	<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 bg-black ">
+	<div class="mx-auto max-w-lg">
+		<h1 class="text-center text-5xl font-code text-primary">
+		You had me at
+		</h1>
+		<h1 class="text-center text-5xl font-code text-secondary">
+		Hello World.
+		</h1>
+
+		<form action="" class="mt-6 mb-0 space-y-4 rounded-lg p-8  shadow-2xl" onSubmit={handleSubmit}>
+		<p class="text-3xl font-code text-yellow">Sign in to your account</p>
+
 		<div>
-			<h1>Login to Your Account:</h1>
+			<label for="email" class="text-sm font-code text-primary text-2xl">Email</label>
 
-			<p>{msg}</p>
-
-			<form onSubmit={handleSubmit}>
-				<label htmlFor='email'>Email:</label>
-				<input 
-					type="email"
-					id="email"
-					placeholder='your email...'
-					onChange={e => setEmail(e.target.value)}
-					value={email}
+			<div class="relative mt-1">
+			<input
+				type="email"
+				id="email"
+				class="w-full rounded-lg border-white p-4 pr-12 text-sm shadow-sm"
+				placeholder="Enter email"
+				onChange={e => setEmail(e.target.value)}
+				value={email}
 				/>
-
-				<label htmlFor='password'>Password:</label>
-				<input 
-					type="password"
-					id="password"
-					placeholder='password...'
-					onChange={e => setPassword(e.target.value)}
-					value={password}
-				/>
-
-				<button type="submit">Login</button>
-			</form>
+			</div>
 		</div>
+
+		<div>
+			<label for="password" class="text-sm font-code text-primary text-2xl">Password</label>
+
+			<div class="relative mt-1">
+			<input
+				type="password"
+				id="password"
+				class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+				placeholder="Enter password"
+				onChange={e => setPassword(e.target.value)}
+				value={password}
+			/>
+
+			</div>
+		</div>
+
+		<button
+			type="submit"
+			class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm text-yellow font-code"
+			>
+			Sign in
+		</button>
+
+		<p class="text-center font-code text-primary">
+			No account? 
+			<Link to="/register" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code mr-10 underline">
+				Sign-Up
+			</Link> 
+		</p>
+		</form>
+	</div>
+	</div>
 	)
 }
