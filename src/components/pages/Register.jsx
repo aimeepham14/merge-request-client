@@ -18,7 +18,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 	const [biography, setBiography] = useState('');
 	const [lookingFor, setLookingFor] = useState('');
 	const [msg, setMsg] = useState('');
-	const [favoritePLanguage, setFavoritePLanguage] = useState('')
+	const [favoritePLanguage, setFavoritePLanguage] = useState('Python')
 	//CLOUDINARY
 	const [photo, setPhoto] = useState('');
 	const [loading, setLoading] = useState(false);
