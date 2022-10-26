@@ -12,7 +12,8 @@ module.exports = {
     textColor: {
       'primary': '#5BC288',
       'secondary': '#C37BB6',
-      'background': '#2C2C2D'
+      'yellow': '#FFD130',
+      'orange': '#CD866F'
     },
   },
   plugins: [],
