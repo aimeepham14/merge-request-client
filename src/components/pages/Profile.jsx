@@ -38,12 +38,12 @@ export default function Profile({ currentUser, handleLogout }) {
 	}, []) // only fire on the first render of this component
 
 	return (
-		<div>
-			<h1>Hello, {currentUser.name}</h1>
+		<div className='bg-gray h-screen flex flex-col'>
+			<h1 className= 'text-2xl mb-14 font-code text-primary'>Hello, {currentUser.name}</h1>
 
-			<p>your email is {currentUser.email}</p>
+			<p className= 'text-4xl mb-14 font-code text-yellow'>your email is {currentUser.email}</p>
 
-			<h2>Here is the secret message that is only availible to users of User App:</h2>
+			<h2 className= 'text-2xl mb-14 font-code text-orange'>Here is the secret message that is only availible to users of User App:</h2>
 
 			<h3>{msg}</h3>
 		</div>
