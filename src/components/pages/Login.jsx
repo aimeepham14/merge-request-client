@@ -90,9 +90,9 @@ export default function Login({ currentUser, setCurrentUser }) {
 
 		<button
 			type="submit"
-			class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm text-yellow font-code"
+			class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-2xl text-yellow font-code"
 			>
-			Sign in
+			SIGN IN
 		</button>
 
 		<p class="text-center font-code text-primary">
