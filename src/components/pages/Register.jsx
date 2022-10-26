@@ -2,6 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { Navigate } from 'react-router-dom'
+import { useEffect } from 'react';
 
 export default function Register({ currentUser, setCurrentUser }) {
 	// state for the controlled form
@@ -18,12 +19,20 @@ export default function Register({ currentUser, setCurrentUser }) {
 	const [lookingFor, setLookingFor] = useState('');
 	const [msg, setMsg] = useState('');
 	const [favoritePLanguage, setFavoritePLanguage] = useState('')
-
 	//CLOUDINARY
 	const [photo, setPhoto] = useState('');
-		
 	const [loading, setLoading] = useState(false);
 	
+
+	let newDate = new Date()
+	let date = newDate.getDate()
+	let month = newDate.getMonth() + 1
+
+	useEffect(()=> {
+		setBirthDay(date)
+		setBirthMonth(month)
+	},[])
+
 	const uploadImage = async e => {
 		const files = e.target.files[0];
 		const formData = new FormData();
@@ -79,6 +88,11 @@ export default function Register({ currentUser, setCurrentUser }) {
 			}
 		}
  	}
+	const birthYearOptions = [] 
+	
+		for (var i = 2004; i >= 1922; i--) {
+			birthYearOptions.push(<option value={i}>{i}</option>)
+		}
 
 	// conditionally render a navigate component
 	if (currentUser) {
@@ -163,9 +177,10 @@ export default function Register({ currentUser, setCurrentUser }) {
 				</select>
 
 				<label for="birthYear">Birth Year</label>
-				<input id="birthYear" name="year" onChange={e => setBirthYear(e.target.value)}
+				<select id="birthYear" name="year" onChange={e => setBirthYear(e.target.value)}
 					value={birthYear} required>
-				</input>
+						{birthYearOptions}
+				</select>
 
 				<p>Gender:</p>
 				<label htmlFor='gender'>Man</label>
