@@ -299,7 +299,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					name="lookingFor"
 					placeholder='No Preference'
 					onChange={e => setLookingFor(e.target.value)}
-					value='None'
+					value='No Preference'
 				/>
 				
 

@@ -10,24 +10,55 @@ export default function Swipe(props) {
         const getAllUsers = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users`)
-                console.log(response.data)
                 const responseData = response.data
                 const info = responseData.map((data)=> {
                     return({
                         id: data._id,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
                         matchedUsers: data.matchedUsers,
-                        likedUsers: data.likedUsers
+                        likedUsers: data.likedUsers,
+                        photos: data.photo,
+                        favoritePLanguage: data.favoritePLanguage
+
                     }
                     )
                 })
-                console.log(info)
                 setUsers(info)
+                
             } catch(err) {
                 console.warn(err)
             }
         }
         getAllUsers()
     },[])
+
+    const handlePush = async (e) => {
+        e.preventDefault()
+        try {
+            users.shift()
+            setUsers(users)
+            console.log(users)
+
+            
+        } catch(err) {
+            console.warn(err)
+        }
+    }
+
+    const allUsers = users.map((user) => {
+        return(
+            <div>
+                <div>{user.firstName} {user.lastName}</div>
+                <div>Favorite Programming Language: {user.favoritePLanguage}</div>
+                <div className="flex">
+                    <img className="mx-auto" src={user.photos} alt={`pic of ${user.firstName}`}></img>
+                </div>
+                <button onClick={handlePush}>Push</button>
+                <button>Pull</button>
+            </div>
+        )       
+    })
 
     // useEffect(() => {
     //     const getLookingForUsers = async () => {
@@ -55,11 +86,11 @@ export default function Swipe(props) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const reqBody = lookingFor
-            
-            console.log(reqBody)
-            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/lookingfor`, reqBody)
-                console.log(response.data)
+    
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/lookingfor/${lookingFor}`)
+                console.log("lookingFor", lookingFor)
+                console.log("response", response)
+
                 const responseData = response.data
                 const info = responseData.map((data)=> {
                     return({
@@ -88,7 +119,7 @@ export default function Swipe(props) {
             </select>
             <button type="submit">Filter</button>
         </form>
-
+        <div>{allUsers}</div>
     </div>
     )
 }
