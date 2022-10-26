@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { useNavigate, useParams } from 'react-router-dom'
+
 
 export default function Swipe(props) {
     const [users, setUsers] = useState([])
     const [lookingForUsers, setLookingForUsers] = useState([])
     const [lookingFor, setLookingFor] = useState("No Preference")
+    
+    const { userId } = useParams()
+  
+    
 
     useEffect(() => {
         const getAllUsers = async () => {
@@ -36,11 +42,12 @@ export default function Swipe(props) {
     const handlePush = async (e) => {
         e.preventDefault()
         try {
-            users.shift()
-            setUsers(users)
-            console.log(users)
-
-            
+            const body = {
+                rejectedUsers: e.target.value
+            }
+            console.log(e.target.value)
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/rejected`, body)
+            console.log(props.currentUser.id)
         } catch(err) {
             console.warn(err)
         }
@@ -54,7 +61,7 @@ export default function Swipe(props) {
                 <div className="flex">
                     <img className="mx-auto" src={user.photos} alt={`pic of ${user.firstName}`}></img>
                 </div>
-                <button onClick={handlePush}>Push</button>
+                <button onClick={handlePush} value={user.id}>Push</button>
                 <button>Pull</button>
             </div>
         )       
