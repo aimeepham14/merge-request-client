@@ -19,7 +19,8 @@ export default function Register({ currentUser, setCurrentUser }) {
 	const [msg, setMsg] = useState('');
 
 	//CLOUDINARY
-	const [image, setImage] = useState('');
+	const [photos, setPhotos] = useState([]);
+		
 	const [loading, setLoading] = useState(false);
 	
 	const uploadImage = async e => {
@@ -30,9 +31,13 @@ export default function Register({ currentUser, setCurrentUser }) {
 			setLoading(true)
 			try {
 				const response = await axios.post(`https://api.cloudinary.com/v1_1/dspcnzoiy/image/upload`,formData)
-				setImage(response.data.url)
+				console.log(response.data)
+				setPhotos([ {url: response.data.url, public_id: response.data.public_id}, ...photos])
 			}catch(err){
 				console.warn(err)
+			}finally {
+				console.log(photos)
+				console.log(loading)
 			}
 	}
 
@@ -52,7 +57,8 @@ export default function Register({ currentUser, setCurrentUser }) {
 				gender,
 				city,
 				biography,
-				lookingFor
+				lookingFor,
+				photos
 
 			}
 			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/register`, reqBody)
@@ -273,7 +279,9 @@ export default function Register({ currentUser, setCurrentUser }) {
 				<label htmlFor='profileimage'>Upload a profile picture:</label>
 				<input type='file' name='file'id='profileimage' onChange={uploadImage}></input>
 				<h1>Account Preview</h1>
-				{ loading ? <img src={image}></img>: <img src='https://pbs.twimg.com/profile_images/1564398871996174336/M-hffw5a_400x400.jpg'></img> }
+				{ loading ? <img src={photos[1].url}></img>: <img src='https://pbs.twimg.com/profile_images/1564398871996174336/M-hffw5a_400x400.jpg'></img> }
+				{/* { loading == 2 ? <img src={photos[1].url}></img>: <img src='https://pbs.twimg.com/profile_images/1564398871996174336/M-hffw5a_400x400.jpg'></img> }
+				{ loading == 3 ? <img src={photos[2].url}></img>: <img src='https://pbs.twimg.com/profile_images/1564398871996174336/M-hffw5a_400x400.jpg'></img> } */}
 				<p>Biography:</p>
 				<p>{biography}</p>
 			</div>
