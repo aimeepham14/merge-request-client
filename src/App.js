@@ -74,7 +74,7 @@ function App() {
             element={currentUser ? <Profile handleLogout={handleLogout} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : <Navigate to="/login" />}
           />
           <Route 
-            path="/swipe"
+            path="/swipe/:userId"
             element={<Swipe currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
           />
           <Route 
