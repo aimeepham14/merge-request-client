@@ -18,6 +18,10 @@ export default function Navbar({ currentUser, handleLogout }) {
 			<Link to="/profile" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
 				profile
 			</Link>
+
+			<Link to="/requests" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
+				requests
+			</Link>
 		</>
 		)
 	 }

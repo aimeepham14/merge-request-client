@@ -16,7 +16,7 @@ export default function RequestsChatDisplay({currentUser}) {
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/messages/${userId}/${clickedUserId}`)
         setUserMessages(response.data)
         // console.log(response)
-        console.log(userMessages)
+        // console.log(userMessages)
         } catch(err){
             console.warn(err)
         }
@@ -27,7 +27,7 @@ export default function RequestsChatDisplay({currentUser}) {
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/messages/${clickedUserId}/${userId}`)
         setOtherUserMessages(response.data)
         // console.log(response)
-        console.log(userMessages)
+        // console.log(userMessages)
         } catch(err){
             console.warn(err)
         }
@@ -48,7 +48,7 @@ export default function RequestsChatDisplay({currentUser}) {
         messageArray['content'] = message.content
         messageArray['timestamp'] = message.createdAt
         messages.push(messageArray)
-        console.log(messages)
+        // console.log(messages)
         
     })
 
@@ -60,7 +60,7 @@ export default function RequestsChatDisplay({currentUser}) {
         messageArray['content'] = message.content
         messageArray['timestamp'] = message.createdAt
         messages.push(messageArray)
-        console.log(messages)
+        // console.log(messages)
         
     })
 
