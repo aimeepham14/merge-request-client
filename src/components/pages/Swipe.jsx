@@ -251,26 +251,26 @@ export default function Swipe({currentUser}) {
         }
     }
 
-    // const swipedUsers = async () => {
-    //     try {
-    //         const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`)
+    const swipedUsers = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`)
         
-            // const ids = users.map((user) => {
-            //     return (
-            //         user.id
-            //     )
-            // })
+            const ids = users.map((user) => {
+                return (
+                    user.id
+                )
+            })
    
             // const likedOut = ids.filter(user => response.data.likedUsers.includes(user)) 
-            // const likedOut = await ids.filter(function(obj) { return response.data.likedUsers.indexOf(obj) == -1; })
+            const likedOut = await ids.filter(function(obj) { return response.data.likedUsers.indexOf(obj) == -1; })
 
-            // const rejectedOut = await likedOut.filter(function(obj) { return response.data.rejectedUsers.indexOf(obj) == -1; })
-  
-    //         return rejectedOut
-    //     } catch(err) {
-    //         console.warn(err)
-    //     }  
-    // }
+            const rejectedOut = await likedOut.filter(function(obj) { return response.data.rejectedUsers.indexOf(obj) == -1; })
+            console.log("rejectedOut", rejectedOut)
+            
+        } catch(err) {
+            console.warn(err)
+        }  
+    }
 
     // const swipedUsers = users.map((user) => {
     //     try {

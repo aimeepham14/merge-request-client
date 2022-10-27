@@ -612,7 +612,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					<label className="block uppercase text-m font-code text-db mb-2" htmlFor="profileimage">
 						Upload a profile picture
 					</label>
-					<input type="file" name='file' id="profileimage" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-4/12 ease-linear transition-all duration-150 font-code" value={city} onChange={uploadImage}/>
+					<input type="file" name='file' id="profileimage" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-4/12 ease-linear transition-all duration-150 font-code" onChange={uploadImage}/>
 					</div>
 				</div>
 
