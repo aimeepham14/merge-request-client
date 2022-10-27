@@ -7,17 +7,22 @@ import { Link } from 'react-router-dom'
 
 export default function Requests({currentUser}) {
     const [ selectedUser, setSelectedUser ] = useState(null)
-
+    // console.log(currentUser.id)
     const Requests = (
         <div style={{backgroundColor: 'black', color:'white'}}>
-            <RequestsHeader/>
+            <RequestsHeader currentUser={currentUser}/>
             <div>
-                <button>Approved Requests</button>
-                <button>Chat || Code</button>
+                <button 
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+                onClick={()=> setSelectedUser('')}
+                >Approved Requests</button>
+                <button 
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                disabled={!selectedUser} >Chat || Code</button>
             </div>
-            <RequestsDisplay/>
+            {!selectedUser && <RequestsDisplay setSelectedUser={setSelectedUser}/>}
 
-            <RequestsChatDisplay/>
+            {!selectedUser && <RequestsChatDisplay currentUser={currentUser}/>}
         </div>
     )
 

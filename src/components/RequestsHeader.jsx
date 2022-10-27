@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-export default function RequestsHeader() {
+export default function RequestsHeader({currentUser}) {
     return (
         <div>
-            Approved Requests
+            <p>{currentUser.firstName}</p>
         </div>
     )
 }

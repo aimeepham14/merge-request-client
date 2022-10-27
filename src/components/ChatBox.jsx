@@ -1,7 +1,30 @@
+import axios from 'axios'
 import { useState } from 'react'
 
-export default function ChatBox() {
+export default function ChatBox({currentUser, usersMessages, otherUsersMessages}) {
+
     const [chat, setChat] = useState(null)
+
+    const userId = currentUser?.id
+    const otherUserId = '6359802dfd3905ca2e1b4ffe'
+
+    const newMessage = async () => {
+        const reqBody = {
+            from: userId,
+            to: otherUserId,
+            content: chat,
+        }
+
+        try {
+            const resposne = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/messages/new`, reqBody)
+            usersMessages()
+            otherUsersMessages()
+            setChat('')
+        }catch(err){
+            console.warn(err)
+        }
+    }
+
     return (
         <div>
             <textarea 
@@ -12,7 +35,7 @@ export default function ChatBox() {
             value={chat}
             style={{color: 'black'}}
             ></textarea>
-            <button class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-2xl text-yellow font-code" type='submit'>Submit Text</button>
+            <button class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-2xl text-yellow font-code" type='submit' onClick={newMessage}>Submit Text</button>
         </div>
     )
 }
