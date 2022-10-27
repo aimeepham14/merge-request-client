@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 export default function Profile({ currentUser, handleLogout}) {
 	// state for the secret message (aka user privilaged data)
@@ -61,6 +61,9 @@ export default function Profile({ currentUser, handleLogout}) {
 				<div class="items-center space-x-2">
 					<h2 class="text-gray-800 cursor-pointer text-1xl mb-2  text-left font-code text-orange">{currentUser.city}, NY</h2>
 					<h2 class="text-gray-800 cursor-pointer text-2xl mb-2 text-left font-code text-secondary"> Testing with a really really long biography. Blah blah adding a pick up message here. {currentUser.biography}</h2>
+					<div className='mx-auto'>
+						<Link to={`/profile/${currentUser.id}/edit`}><button className="bg-orange-700 rounded-md p-2 font-bold">Edit Profile</button></Link>
+					</div>
 				</div>
 			</div>
 		</div>

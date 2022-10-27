@@ -7,6 +7,7 @@ import {
 import { useState, useEffect } from 'react'
 import Login from './components/pages/Login'
 import Profile from './components/pages/Profile'
+import EditProfile from './components/pages/EditProfile'
 import Register from './components/pages/Register'
 import Welcome from './components/pages/Welcome'
 import Navbar from './components/Navbar'
@@ -75,11 +76,15 @@ function App() {
           />
           <Route 
             path="/swipe/:userId"
-            element={<Swipe currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+            element={currentUser ? <Swipe currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Navigate to="/login" />}
           />
           <Route 
             path="/requests"
-            element={<Requests currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+            element={currentUser ? <Requests currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Navigate to="/login" />}
+          />
+          <Route
+            path="/profile/:userId/edit"
+            element={currentUser ? <EditProfile currentUser={currentUser} setCurrentUser={setCurrentUser}/> : <Navigate to="/login" />}
           />
 
 
