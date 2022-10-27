@@ -13,7 +13,8 @@ module.exports = {
       'primary': '#5BC288',
       'secondary': '#C37BB6',
       'yellow': '#FFD130',
-      'orange': '#CD866F'
+      'orange': '#CD866F',
+      'db': '#7fc9e9'
     },
   },
   plugins: [],
