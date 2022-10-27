@@ -77,7 +77,7 @@ export default function Swipe(props) {
                 <div>{user.firstName} {user.lastName}</div>
                 <div>Favorite Programming Language: {user.favoritePLanguage}</div>
                 <div className="flex">
-                    <img className="mx-auto" src={user.photos} alt={`pic of ${user.firstName}`}></img>
+                    <img className="mx-auto max-w-md max-h-md" src={user.photos} alt={`pic of ${user.firstName}`}></img>
                 </div>
                 <button onClick={handlePush} value={user.id}>Push</button>
                 <button onClick={handlePull} value={user.id}>Pull</button> 
