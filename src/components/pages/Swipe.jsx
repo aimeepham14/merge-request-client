@@ -39,7 +39,7 @@ export default function Swipe(props) {
         }
         getAllUsers()
     },[])
-
+    // it just adds it to the rejected array for now
     const handlePush = async (e) => {
         e.preventDefault()
         try {
@@ -53,7 +53,7 @@ export default function Swipe(props) {
             console.warn(err)
         }
     }
-
+    // it just adds it to the liked array for now
     const handlePull = async (e) => {
         e.preventDefault()
         try {
