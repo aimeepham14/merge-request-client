@@ -491,7 +491,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 								value="Woman"
 								className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
 								/>
-								Women
+								Woman
 							</label>
 							<label htmlFor='gender'>
 								<input
@@ -631,7 +631,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 				</h6>
 
 				<div className="w-full lg:w-4/12 px-4">
-					<div className="relative w-full mb-3">
+					<div className="relative w-full mt-3 mb-6">
 					{ loading ? <img src={photo} style={{height: 250}}></img>: <img src={photo}></img> }
 					<p>{biography}</p>
 					</div>
