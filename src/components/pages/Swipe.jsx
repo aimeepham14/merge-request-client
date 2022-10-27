@@ -73,16 +73,19 @@ export default function Swipe(props) {
             
             <div>
                 {props.currentUser.id !== user.id ? 
-                <div>
-                <div>{user.firstName} {user.lastName}</div>
-                <div>Favorite Programming Language: {user.favoritePLanguage}</div>
-                <div className="flex">
-                    <img className="mx-auto" src={user.photos} alt={`pic of ${user.firstName}`}></img>
+                <div class="p-10 bg-gray-700 flex justify-center items-center">
+                    <div class="max-w-lg container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+                        
+                    <div class="mt-2 ml-4 font-bold text-gray-800 cursor-pointer hover:text-gray-900 transition duration-100 text-6xl font-code text-orange">{user.firstName} {user.lastName}</div>
+                    <div>Favorite Programming Language: {user.favoritePLanguage}</div>
+                    <div className="flex">
+                        <img className="mx-auto max-w-md max-h-md" src={user.photos} alt={`pic of ${user.firstName}`}></img>
+                    </div>
+                    <button onClick={handlePush} value={user.id}>Push</button>
+                    <button onClick={handlePull} value={user.id}>Pull</button> 
+                    </div>
                 </div>
-                <button onClick={handlePush} value={user.id}>Push</button>
-                <button onClick={handlePull} value={user.id}>Pull</button> 
-                </div>
-                :
+                : 
                 <div></div>
                 }
             </div>
@@ -136,6 +139,51 @@ export default function Swipe(props) {
             console.warn(err)
         }
     }
+
+    // const swipedUsers = async () => {
+    //     try {
+    //         const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`)
+        
+            // const ids = users.map((user) => {
+            //     return (
+            //         user.id
+            //     )
+            // })
+   
+            // const likedOut = ids.filter(user => response.data.likedUsers.includes(user)) 
+            // const likedOut = await ids.filter(function(obj) { return response.data.likedUsers.indexOf(obj) == -1; })
+
+            // const rejectedOut = await likedOut.filter(function(obj) { return response.data.rejectedUsers.indexOf(obj) == -1; })
+  
+    //         return rejectedOut
+    //     } catch(err) {
+    //         console.warn(err)
+    //     }  
+    // }
+
+    // const swipedUsers = users.map((user) => {
+    //     try {
+    //         const ids = users.map((user) => {
+    //             return (
+    //                 user.id
+    //             )
+    //         })
+    //         const response = axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`)
+    //         const likedOut = ids.filter(function(obj) { return response.data.likedUsers.indexOf(obj) == -1; })
+
+    //         const rejectedOut = likedOut.filter(function(obj) { return response.data.rejectedUsers.indexOf(obj) == -1; })
+            
+    //     } catch(err) {
+    //         console.warn(err)
+    //     }
+    //     return (
+    //         <div>{user.rejectedOut}</div>
+            
+    //     )
+    // })
+    
+
+    
     return(
     <div>
         <h1>The Swipe Page</h1>
