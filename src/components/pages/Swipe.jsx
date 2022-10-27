@@ -77,6 +77,14 @@ export default function Swipe({currentUser}) {
             }
         }
         getSelectedUser()
+        if (lastDirection == 'right') {
+            handlePull()
+            console.log('HANDLING PULL')
+        } else if (lastDirection == 'left'){
+            handlePush()
+            console.log('HANDLING PUSH')
+
+        }
     },[selectedUser])
 
     useEffect(()=> {
@@ -103,6 +111,7 @@ export default function Swipe({currentUser}) {
         }
         compareUsersLikedArray()
     }, [checkUser])
+
 
     // it just adds it to the rejected array for now
     const handlePush = async () => {
@@ -133,25 +142,27 @@ export default function Swipe({currentUser}) {
         }
     }
 
-    const setVariables = (direction, id) => {
-        setLastDirection(direction)
-        setSelectedUser(id)
-    }
+    // const setVariables = (direction, id) => {
+    //     setLastDirection(direction)
+    //     setSelectedUser(id)
+    // }
 
-    const swiped = async (direction, name, id) => {
-        const response = await setVariables(direction, id)
-        console.log(name + 'swiped left')
+    const swiped = (direction, name, id) => {
+        // const response = await setVariables(direction, id)
+        console.log(name + 'swiped '+ direction)
         console.log(direction)
         console.log(id)
+        setLastDirection(direction)
+        setSelectedUser(id)
         // setLastDirection(direction)
         console.log('IS DIRECTION SHOWING UP?',lastDirection)
         // setSelectedUser(id)
-        if(direction == 'left'){
-            handlePush()
-        }
-        else {
-            handlePull()
-        }
+    //     if(lastDirection == 'left'){
+    //         handlePush()
+    //     }
+    //     else if(lastDirection == 'right'){
+    //         handlePull()
+    //     }
     }
     
     const outOfFrame = (name) => {
