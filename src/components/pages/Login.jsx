@@ -45,7 +45,7 @@ export default function Login({ currentUser, setCurrentUser }) {
 
 	return (
 		
-	<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 bg-black ">
+	<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 bg-[#1C1C1C] ">
 	<div class="mx-auto max-w-lg">
 		<h1 class="text-center text-5xl font-code text-primary">
 		You had me at
@@ -54,7 +54,7 @@ export default function Login({ currentUser, setCurrentUser }) {
 		Hello World.
 		</h1>
 
-		<form action="" class="mt-6 mb-0 space-y-4 rounded-lg p-8  shadow-2xl" onSubmit={handleSubmit}>
+		<form action="" class="mt-6 mb-0 space-y-4 rounded-lg p-8 shadow-slate-50  shadow-2xl" onSubmit={handleSubmit}>
 		<p class="text-3xl font-code text-yellow">Sign in to your account</p>
 
 		<div>
