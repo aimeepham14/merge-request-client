@@ -48,14 +48,14 @@ export default function RequestsChatDisplay({currentUser, selectedUser}) {
         messageArray['content'] = message.content
         messageArray['timestamp'] = message.createdAt
         messages.push(messageArray)
-        // console.log(messages)
+        console.log(messages)
         
     })
 
     // ADD CLICKED USER ONCE DONE
     otherUserMessages?.forEach(message => {
         const messageArray = {}
-        messageArray['name'] = selectedUser?.name
+        messageArray['name'] = selectedUser?.firstName
         messageArray['img_url'] = selectedUser?.photo
         messageArray['content'] = message.content
         messageArray['timestamp'] = message.createdAt
