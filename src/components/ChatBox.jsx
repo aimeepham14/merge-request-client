@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { useState } from 'react'
 
-export default function ChatBox({currentUser, usersMessages, otherUsersMessages}) {
+export default function ChatBox({currentUser, selectedUser, usersMessages, otherUsersMessages}) {
 
     const [chat, setChat] = useState(null)
 
     const userId = currentUser?.id
-    const otherUserId = '6359802dfd3905ca2e1b4ffe'
+    const otherUserId = selectedUser?._id
 
     const newMessage = async () => {
         const reqBody = {
@@ -16,7 +16,7 @@ export default function ChatBox({currentUser, usersMessages, otherUsersMessages}
         }
 
         try {
-            const resposne = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/messages/new`, reqBody)
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/messages/new`, reqBody)
             usersMessages()
             otherUsersMessages()
             setChat('')

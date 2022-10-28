@@ -4,12 +4,12 @@ import RequestsDisplay from '../RequestsDisplay'
 import RequestsHeader from '../RequestsHeader'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import userEvent from '@testing-library/user-event'
 
 export default function Requests({currentUser}) {
-    const [ selectedUser, setSelectedUser ] = useState(null)
+    const [ selectedUser, setSelectedUser ] = useState([])
     // const [matches, setMatches] = useState([])
-
-    // console.log(currentUser.id)
+    console.log('SELECTED USER', selectedUser)
     const Requests = (
         <div style={{backgroundColor: 'black', color:'white'}}>
             <RequestsHeader currentUser={currentUser}/>
@@ -22,9 +22,9 @@ export default function Requests({currentUser}) {
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 disabled={!selectedUser} >Chat || Code</button>
             </div>
-            {!selectedUser && <RequestsDisplay currentUser={currentUser} setSelectedUser={setSelectedUser} />}
+            {!selectedUser && <RequestsDisplay setSelectedUser={setSelectedUser} currentUser={currentUser}/>}
 
-            {selectedUser && <RequestsChatDisplay currentUser={currentUser}/>}
+            {selectedUser && <RequestsChatDisplay currentUser={currentUser} selectedUser={selectedUser}/>}
         </div>
     )
 
