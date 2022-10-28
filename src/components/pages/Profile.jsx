@@ -61,7 +61,7 @@ export default function Profile({ currentUser, handleLogout}) {
 				<div class="items-center space-x-2">
 					<h2 class="text-gray-800 cursor-pointer text-1xl mb-2  text-left font-code text-orange">{currentUser.city}</h2>
 					<h2 class="text-gray-800 cursor-pointer text-2xl mb-2 text-left font-code text-secondary">{currentUser.biography}</h2>
-					<h2 class="text-gray-800 cursor-pointer text-2xl mb-2 text-left font-code text-secondary">{currentUser.birthYear} </h2>
+					<h2 class="text-gray-800 cursor-pointer text-2xl mb-2 text-left font-code text-secondary">{currentUser.age} </h2>
 					<div className='mx-auto'>
 						<Link to={`/profile/${currentUser.id}/edit`}><button className="bg-orange-700 rounded-md p-2 font-bold">Edit Profile</button></Link>
 					</div>

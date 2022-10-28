@@ -14,6 +14,7 @@ import Navbar from './components/Navbar'
 import Swipe from './components/pages/Swipe'
 import Requests from './components/pages/Requests'
 import RequestsProfile from './components/pages/RequestsProfile'
+import SecureAccount from './components/pages/SecureAccount'
 
 import './App.css'
 import jwt_decode from 'jwt-decode'
@@ -92,7 +93,10 @@ function App() {
             path="/requests/:requestId"
             element={currentUser ? <RequestsProfile currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Navigate to="/login" />}
           />
-
+          <Route 
+            path="/profile/:userId/secure"
+            element={currentUser ? <SecureAccount currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Navigate to="/login" />}
+          />
 
         </Routes>
       </div>
