@@ -26,6 +26,7 @@ export default function Swipe({currentUser}) {
                     id: data._id,
                     firstName: data.firstName,
                     lastName: data.lastName,
+                    email: data.email,
                     matchedUsers: data.matchedUsers,
                     likedUsers: data.likedUsers,
                     rejectedUsers: data.rejectedUsers,
@@ -64,6 +65,7 @@ export default function Swipe({currentUser}) {
                     id: data._id,
                     firstName: data.firstName,
                     lastName: data.lastName,
+                    email: data.email,
                     matchedUsers: data.matchedUsers,
                     likedUsers: data.likedUsers,
                     rejectedUsers: data.rejectedUsers,
@@ -91,14 +93,14 @@ export default function Swipe({currentUser}) {
         const compareUsersLikedArray = async() => {
             try {
                 const body = {
-                    otherperson: checkUser.id
+                    otherperson: checkUser.email
                 }
                 const body2 = {
-                    otherperson: currentUser.id
+                    otherperson: currentUser.email
                 }
                 if (checkUser.likedUsers.includes(currentUser.id)){
                     console.log('TRUE')
-                    const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/addmatch`, body)
+                    const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${currentUser.id}/addmatch`, body)
                     const response2 = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${checkUser.id}/addmatch`, body2)
                     console.log(response, response2)
                 }

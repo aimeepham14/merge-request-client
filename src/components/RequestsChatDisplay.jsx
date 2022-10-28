@@ -4,11 +4,11 @@ import { useState } from 'react'
 import Chat from './Chat'
 import ChatBox from './ChatBox'
 
-export default function RequestsChatDisplay({currentUser}) {
+export default function RequestsChatDisplay({currentUser, selectedUser}) {
     const [userMessages, setUserMessages] = useState(null)
     const [otherUserMessages, setOtherUserMessages] = useState(null)
     const userId = currentUser.id
-    const clickedUserId = '6359802dfd3905ca2e1b4ffe'
+    const clickedUserId = selectedUser._id
 
     // const clickedMatchId = clickedMatch?.id
     const usersMessages = async() => {
@@ -37,7 +37,7 @@ export default function RequestsChatDisplay({currentUser}) {
     useEffect(()=> {
         usersMessages()
         otherUsersMessages()
-    }, [])
+    }, [selectedUser])
 
     const messages = []
 
@@ -55,8 +55,8 @@ export default function RequestsChatDisplay({currentUser}) {
     // ADD CLICKED USER ONCE DONE
     otherUserMessages?.forEach(message => {
         const messageArray = {}
-        messageArray['name'] = 'Tyler'
-        messageArray['img_url'] = 'http://res.cloudinary.com/dspcnzoiy/image/upload/v1666809899/a2kqsqrg9t4auz6xc9yk.jpg'
+        messageArray['name'] = selectedUser?.name
+        messageArray['img_url'] = selectedUser?.photo
         messageArray['content'] = message.content
         messageArray['timestamp'] = message.createdAt
         messages.push(messageArray)
@@ -64,13 +64,14 @@ export default function RequestsChatDisplay({currentUser}) {
         
     })
 
-    const sortedMessages = messages?.sort((a,b) => a.timestamp.localeCompare(b.timestamp))
+    const sortedMessages = messages?.sort((x,y) => x.timestamp.localeCompare(y.timestamp))
     return (
         <div>
             <Chat 
             sortedMessages={sortedMessages}/>
             <ChatBox 
             currentUser={currentUser}
+            selectedUser={selectedUser}
             usersMessages={usersMessages}
             otherUsersMessages={otherUsersMessages}
             />
