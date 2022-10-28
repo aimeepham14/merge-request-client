@@ -10,7 +10,8 @@ export default function Chat({sortedMessages, currentUser, selectedUser}) {
         return (
             <div key={`${i}`}>
                 <div>
-                    <div>
+                    {/* HI AIMEE IF IT HELPS THIS CONDITIONAL CHANGES THE CLASS NAME IF THE MESSAGE IS FROM ANOTHER USER, IT DEFAULTS TO 'left'*/}
+                    <div className={`${(message.name==selectedUser.firstName) ? 'right' : 'left'}`}>
                         <img src={message.img_url} style={{height: 100}}></img>
                     </div>
                     <p>{message.name}</p>
