@@ -6,7 +6,7 @@ export default function Modal ({ isVisible, onClose, children }) {
 
     }
     return (
-        <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center' id="content" onClick ={handleClose}>
+        <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50' id="content" onClick ={handleClose}>
             <div className='w-[600px] flex flex-col'>
                 <button className="text-red text-xl place-self-end" onClick = {() => onClose()}> X
                 </button>
