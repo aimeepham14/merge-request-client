@@ -338,10 +338,10 @@ export default function Register({ currentUser, setCurrentUser }) {
 
 
 	
-		<section className=" py-1 bg-black">
-		<div className="w-full lg:w-8/12 px-4 mx-auto mt-6 bg-black">
-		<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-black border-0">
-			<div className="rounded-t bg-black mb-0 px-6 py-6 ">
+		<section className=" py-1 bg-[#1C1C1C]">
+		<div className="w-full lg:w-8/12 px-4 mx-auto mt-6 bg-[#1C1C1C]">
+		<div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-[#1C1C1C] shadow-slate-50  shadow-2xl border-0">
+			<div className="rounded-t bg-[#1C1C1C] mb-0 px-6 py-6 ">
 			<div className="text-center flex justify-between">
 				<h6 className="text-secondary text-4xl font-code">
 				TRY AND CATCH YOUR NEXT MATCH...
@@ -748,7 +748,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 				<button
 				id="button"
 				type="submit"
-				className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none"
+				className="w-5/12 px-6 py-3 mt-3 mb-6 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none"
 				>
 				Sign-Up
 				</button>
@@ -760,10 +760,10 @@ export default function Register({ currentUser, setCurrentUser }) {
 				Profile Preview
 				</h6>
 
-				<div className="w-full lg:w-4/12 px-4">
-					<div className="relative w-full mb-3">
-					{ loading ? <img src={photo} style={{height: 250}}></img>: <img src={photo}></img> }
-					<p>{biography}</p>
+				<div className="flex-auto ">
+					<div className=" mb-3 sm:w-6/12 hero container mx-auto pb-10">
+					{ loading ? <img src={photo} ></img>: <img className="scale-125 " src={photo}></img> }
+					<p className="font-code2 text-yellow mt-10 text-2xl">{biography}</p>
 					</div>
 				</div>
 
