@@ -64,14 +64,42 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
     return (
         <div>
             {matchedUsersProf?.map(match=> (
-                <div key={match.id} onClick={() => setSelectedUser(match)}>  
-                    <div>
-                        <img src={match.photo}/>
+                // <div key={match.id} onClick={() => setSelectedUser(match)}>  
+                //     <div>
+                //         <img src={match.photo}/>
+                //     </div>
+                //     <p>{match.firstName}</p>
+                //     <button onClick={() => handleDelete(match)}>Delete Match</button>
+                // </div>
+                <div key={match.id} onClick={() => setSelectedUser(match)}> 
+                <div className="p-8 bg-[#1C1C1C] shadow-slate-50  shadow-2xl min-h-screen flex justify-center items-center ">
+                <div class="max-w-lg container bg-[#1C1C1C] shadow-slate-50  shadow-2xl rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl ">
+                  <div className="flex items-center justify-center">
+                      <img  className="scale-75" src={match.photo}/>
+                  </div>
+                  <div>
+                    <div className="pt-2 pb-8">
+                      <h1 className="text-5xl font-bold font-code text-primary">{match.firstName}</h1>
+                      <p class="text-2xl text-white font-code pt-2">{match.city}</p>
+              
+                      <p className="mt-6 text-white font-code"> About me: {match.biography}</p>
+              
+                      <div className="flex justify-around mt-8">
+              
+                      <button className="w-5/12 px-6 py-3 mt-3 mb-6 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-[#F23D41] hover:bg-red-800 hover:shadow-lg focus:outline-none"  onClick={() => handleDelete(match)}>Delete Match
+                      </button>
+              
+                      </div>
                     </div>
-                    <p>{match.firstName}</p>
-                    <button onClick={() => handleDelete(match)}>Delete Match</button>
+                    </div>
                 </div>
+                </div>
+                </div>
+
             ))}
         </div>
     )
 }
+
+
+
