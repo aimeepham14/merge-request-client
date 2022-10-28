@@ -754,7 +754,14 @@ export default function Register({ currentUser, setCurrentUser }) {
 				</button>
 				</div>
 				
+				<div className="text-red text-2xl mt-3 mb-6 font-code uppercase">{msg}</div>
+
 				<hr classNameName="mt-6 border-b-1 border-blueGray-300"/>
+
+			
+					
+				
+			
 
 				<h6 className="text-primary text-2xl text-2xl font-code mt-3 mb-6 font-bold uppercase">
 				Profile Preview
