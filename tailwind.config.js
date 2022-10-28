@@ -14,7 +14,8 @@ module.exports = {
       'secondary': '#C37BB6',
       'yellow': '#FFD130',
       'orange': '#CD866F',
-      'db': '#7fc9e9'
+      'db': '#7fc9e9',
+      'red': '#F23D41',
     },
   },
   plugins: [],

@@ -1,9 +1,9 @@
 export default function Welcome() {
 	return (
-		<div className='bg-black h-screen flex flex-col'>
-			<h1 className= 'text-8xl mb-14 font-code text-primary'>MERGE REQUEST</h1>
-			<h2 className= 'text-5xl mb-14 font-code text-secondary'>A dating app for developers to develop meaningful relationships</h2>
-			<img src='/MergeRequestLogo.png' style={{height: 250, width: 300, marginLeft: 450}}></img>
+		<div className='bg-[#1C1C1C] h-screen flex flex-col'>
+			<h1 className= 'text-6xl mb-14 font-code text-primary '>MERGE REQUEST</h1>
+			<img className=' sm:w-2/12 hero container mx-auto pb-10 ' src='https://i.imgur.com/mPiXyR3.png' ></img>
+			<h2 className= 'text-4xl mb-14 font-code text-secondary'>A dating app for developers to develop meaningful relationships</h2>
 		</div>
 
 	)
