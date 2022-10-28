@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import { Link } from 'react-router-dom'
+import Modal from '../Modal'
 
 export default function EditProfile(props) {
     // const [firstName, setFirstName] = useState(props.currentUser.firstName)
@@ -14,6 +15,7 @@ export default function EditProfile(props) {
     const { userId } = useParams()
     const [photo, setPhoto] = useState('')
     const [loading, setLoading] = useState(false)
+    const [showModal, setShowModal] = useState(false)
     const navigate = useNavigate()
 
     console.log("decode", decode)
@@ -58,6 +60,15 @@ export default function EditProfile(props) {
             props.setCurrentUser(decode)
             navigate(`/profile`)
         } catch(err) {
+            console.warn(err)
+        }
+    }
+
+    const handleModal = async (e) => {
+        e.preventDefault()
+        try {
+            setShowModal(true)
+        } catch (err) {
             console.warn(err)
         }
     }
@@ -486,11 +497,28 @@ export default function EditProfile(props) {
             </button>
             <button  
             id="delete"
-            type="submit"
-            className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" onClick={() => handleDelete(`${props.currentUser._id}`)}
+            className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" onClick = {handleModal}
             >
+                {/* onClick={() => handleDelete(`${props.currentUser._id}`)} */}
             Delete Profile
             </button>
+            <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
+                <div className="p-6">
+                    <p>Are you sure you would like to delete your profile?</p>
+                    <button  
+                        id="confirmDelete"
+                        className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-red-600 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" onClick = {() => handleDelete(`${props.currentUser._id}`)}
+                    >
+                        Yes, get me out of here!
+                    </button>
+                    <button  
+                        id="nope"
+                        className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-red-600 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" onClick = {() => setShowModal(false)}
+                    >
+                        Oops, take me back!
+                    </button>
+                </div>
+            </Modal>
             <button className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" style={{color: 'rgb(242,61,65)'}}>
             <Link to={`/profile/${userId}/secure`}>Secure Settings</Link>
             </button>
@@ -507,13 +535,12 @@ export default function EditProfile(props) {
                 { loading ? <img src={photo} style={{height: 250}} alt="profile pic"></img>: <img src={form.photo} alt="profile pic"></img> }
                 </div>
             </div>
-
-            
         </form>
         </div>
     </div>
     </div>
     </section>
+    
 
     )
 }
