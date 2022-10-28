@@ -333,7 +333,8 @@ export default function Swipe({currentUser}) {
 
     return(
     <div>
-        <h1>The Swipe Page</h1>
+        <h1 className="text-secondary text-4xl font-code">Swipe to find your pair programmer for life</h1>
+        <h1 className="text-secondary text-4xl font-code">Swipe to find your pair programmer for life</h1>
         <form onSubmit={handleSubmit}>
             <label for="lookingFor">Looking For:</label>
             <select id="lookingFor" name="lookingFor" onChange ={e => setLookingFor(e.target.value)}>
