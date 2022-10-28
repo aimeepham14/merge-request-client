@@ -601,7 +601,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 				<div className="flex flex-wrap">
 				<div className="w-full lg:w-12/12 px-4">
 					<div className="relative w-full mb-3">
-					<textarea type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-orange bg-white font-code rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4"> Enter a bio and a pick up line here.</textarea>
+					<textarea type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-orange bg-white font-code rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4"onChange={e => setBiography(e.target.value)} placeholder='Enter a bio and a pick up line here.'></textarea>
 					</div>
 				</div>
 				</div>
