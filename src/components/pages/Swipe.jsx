@@ -8,6 +8,7 @@ export default function Swipe({currentUser}) {
     const [users, setUsers] = useState([])
     const [lookingForUsers, setLookingForUsers] = useState([])
     const [lookingFor, setLookingFor] = useState("No Preference")
+    const [swiper, setSwiper] = useState({})
     const { userId } = useParams()
     const [lastDirection, setLastDirection] = useState('')
 
@@ -15,6 +16,38 @@ export default function Swipe({currentUser}) {
     const [selectedUser, setSelectedUser] = useState('')
     // SAVE THE USER PROFILE THAT APPEARS ON SWIPE
     const [checkUser, setCheckUSer] = useState([])
+
+    useEffect(() => {
+        const getUser = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`)
+                console.log(response.data)
+                const responseData = {
+                    biography: response.data.biography,
+                    birthDay: response.data.birthDay,
+                    birthMonth: response.data.birthMonth,
+                    birthYear: response.data.birthYear,
+                    city: response.data.city,
+                    email: response.data.email,
+                    favoritePLanguage: response.data.favoritePLanguage,
+                    firstName: response.data.firstName,
+                    gender: response.data.gender,
+                    lastName: response.data.lastName,
+                    likedUsers: response.data.likedUsers,
+                    lookingFor: response.data.lookingFor,
+                    matchedUsers: response.data.matchedUsers,
+                    photo: response.data.photo,
+                    rejectedUsers: response.data.rejectedUsers,
+                    id: response.data._id
+                }
+                setSwiper(responseData)
+            } catch(err) {
+                console.warn(err)
+            }
+        }
+        getUser()
+    }, [userId])
+
 
     const getAllUsers = async () => {
         try {
@@ -108,7 +141,7 @@ export default function Swipe({currentUser}) {
                     console.log('FALSE')
                 }
             }catch(err){
-                console.log(err)
+                console.warn(err)
             }
         }
         compareUsersLikedArray()
@@ -321,9 +354,11 @@ export default function Swipe({currentUser}) {
                     preventSwipe={['up', 'down']}
                     onSwipe={dir => swiped(dir, user.firstName, user.id)}
                     onCardLeftScreen={() => outOfFrame(user.firstName)}>
-                        <div className='card' style={{backgroundImage: `url(${user.photos})`}}>
+                        {currentUser.id !== user.id && !swiper?.likedUsers?.includes(user.id) && !swiper?.rejectedUsers?.includes(user.id) ? <div className='card' style={{backgroundImage: `url(${user.photos})`}}>
                             <h1 className='card'>{user.firstName}</h1>
-                        </div>
+                        </div>:
+                        <div></div>
+                        }
                     </TinderCard>
                 ))}
                 </div>
