@@ -68,6 +68,22 @@ export default function EditProfile(props) {
 		}
 
 
+    const handleDelete = async (id) => {
+        try {
+            const token = localStorage.getItem('jwt')
+            const decoded = jwt_decode(token)
+            let userId = decoded.id
+            await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/edit`, {data: {userId, id}})
+            const thisUser ={...props.currentUser}
+            props.setCurrentUser(thisUser)
+            navigate(`/`)
+            
+        } catch (err) {
+            console.warn(err)
+        }
+    }
+
+
     return(
         // <div>
         //     <div id="divAroundForm" className="bg-yellow-300 p-12 rounded-md mt-12 flex flex-col text-white drop-shadow-2xl text-2xl w-2/3 mx-auto">
@@ -500,6 +516,13 @@ export default function EditProfile(props) {
             className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none"
             >
             Update Profile
+            </button>
+            <button  
+            id="delete"
+            type="submit"
+            className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" onClick={() => handleDelete(`${props.currentUser._id}`)}
+            >
+            Delete Profile
             </button>
             </div>
             

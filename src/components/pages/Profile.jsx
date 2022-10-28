@@ -15,7 +15,6 @@ export default function Profile({ currentUser, handleLogout}) {
 	})
 	const { userId } = useParams()
 
-
 	// useEffect for getting the user data and checking auth
 	useEffect(() => {
 		const fetchData = async () => {
@@ -49,6 +48,7 @@ export default function Profile({ currentUser, handleLogout}) {
 			fetchData()
 	}, []) // only fire on the first render of this component
 
+
 	return (
 
 	<div class="min-h-screen bg-gray-700 flex justify-center items-center">
@@ -56,11 +56,12 @@ export default function Profile({ currentUser, handleLogout}) {
 			<div>
 				<h1 class="mt-2 ml-4 font-bold text-gray-800 cursor-pointer hover:text-gray-900 transition duration-100 text-6xl font-code text-orange">{currentUser.firstName}</h1>
 			</div>
-			<img class="w-full cursor-pointer" src={currentUser.photo}  alt="" />
+			<img class="w-min cursor-pointer" src={currentUser.photo}  alt="user profile pic" />
 			<div class="flex p-4 justify-between">
 				<div class="items-center space-x-2">
-					<h2 class="text-gray-800 cursor-pointer text-1xl mb-2  text-left font-code text-orange">{currentUser.city}, NY</h2>
-					<h2 class="text-gray-800 cursor-pointer text-2xl mb-2 text-left font-code text-secondary"> Testing with a really really long biography. Blah blah adding a pick up message here. {currentUser.biography}</h2>
+					<h2 class="text-gray-800 cursor-pointer text-1xl mb-2  text-left font-code text-orange">{currentUser.city}</h2>
+					<h2 class="text-gray-800 cursor-pointer text-2xl mb-2 text-left font-code text-secondary">{currentUser.biography}</h2>
+					<h2 class="text-gray-800 cursor-pointer text-2xl mb-2 text-left font-code text-secondary">{currentUser.birthYear} </h2>
 					<div className='mx-auto'>
 						<Link to={`/profile/${currentUser.id}/edit`}><button className="bg-orange-700 rounded-md p-2 font-bold">Edit Profile</button></Link>
 					</div>
@@ -70,35 +71,37 @@ export default function Profile({ currentUser, handleLogout}) {
 	</div>
 
 
+		// <div class="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 py-5">
+		// <div class="rounded-lg shadow-xl bg-gray-900 text-white" style="width:450px;">
+		// 	<div class="border-b border-gray-800 px-8 py-3">
+		// 		<div class="inline-block w-3 h-3 mr-2 rounded-full bg-red-500"></div><div class="inline-block w-3 h-3 mr-2 rounded-full bg-yellow-300"></div><div class="inline-block w-3 h-3 mr-2 rounded-full bg-green-400"></div>
+		// 	</div>
+		// 	<div class="px-8 py-6">
+		// 		<p>
+		// 			<em class="text-blue-400">const</em> 
+		// 			<span class="text-green-400">aboutMe</span> 
+		// 			<span class="text-pink-500">=</span> 
+		// 			<em class="text-blue-400">function</em>
+		// 			rbrace; </p>
+				
+		// 		<p>&nbsp;&nbsp;<span class="text-pink-500">return</span> rbrace; </p>
+		// 		<p>&nbsp;&nbsp;&nbsp;&nbsp;name: <span class="text-yellow-300">'Scott Windon'</span>,</p>
+		// 		<p>&nbsp;&nbsp;&nbsp;&nbsp;position: <span class="text-yellow-300">'fullstack-developer'</span>,</p>
+		// 		<p>&nbsp;&nbsp;&nbsp;&nbsp;website: <span class="text-yellow-300">'<a href="https://scottwindon.com" target="_blank" class="text-yellow-300 hover:underline focus:border-none">https://scottwindon.com</a>'</span>,</p>
+		// 		<p>rbrace; </p>
+		// 		<p>rbrace;</p>
+		// 	</div>
+		// </div>
+		// </div>
+
+
+
+
 	)
 }
 
 
-{/* <div class="min-h-screen bg-gray-700 flex justify-center items-center">
-<div class="max-w-lg container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
-	<div>
-		<h1 class="text-2xl mt-2 ml-4 font-bold text-gray-800 cursor-pointer hover:text-gray-900 transition duration-100">{currentUser.firstName}</h1>
-	</div>
-	<img class="w-full cursor-pointer" src={currentUser.photo}  alt="" />
-	<div class="flex p-4 justify-between">
-		<div class="flex items-center space-x-2">
-			<h2 class="text-gray-800 font-bold cursor-pointer">Testing with a really really long biography. Blah blah adding a pick up message here{currentUser.biography}</h2>
-		</div>
-	<div class="flex space-x-2">
-		<div class="flex space-x-1 items-center">
-		<span>
-			<img src='https://i.imgur.com/A41MUu7.jpg?2' />
-		</span>
-		</div>
-		<div class="flex space-x-1 items-center">
-		<span>
-			<img src="https://i.imgur.com/XnaQj9C.jpg?2"/>
-		</span>
-		</div>
-	</div>
-	</div>
-</div>
-</div> */}
+
 
 
 
