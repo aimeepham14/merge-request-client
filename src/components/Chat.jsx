@@ -22,7 +22,7 @@ export default function Chat({sortedMessages, currentUser, selectedUser}) {
     })
     return (
        <div>
-        {!selectedUser ? <p></p> : profileLink}
+        {!selectedUser._id ? <p></p> : profileLink}
         {displayMessages}
        </div>
     )
