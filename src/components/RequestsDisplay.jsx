@@ -71,7 +71,7 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
                 //     <p>{match.firstName}</p>
                 //     <button onClick={() => handleDelete(match)}>Delete Match</button>
                 // </div>
-     
+                <div key={match.id} onClick={() => setSelectedUser(match)}> 
                 <div className="p-8 bg-[#1C1C1C] shadow-slate-50  shadow-2xl min-h-screen flex justify-center items-center ">
                 <div class="max-w-lg container bg-[#1C1C1C] shadow-slate-50  shadow-2xl rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl ">
                   <div className="flex items-center justify-center">
@@ -92,6 +92,7 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
                       </div>
                     </div>
                     </div>
+                </div>
                 </div>
                 </div>
 
