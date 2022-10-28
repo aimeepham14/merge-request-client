@@ -332,43 +332,46 @@ export default function Swipe({currentUser}) {
     const blankCard = <div>No More Matches</div>
 
     return(
-    <div>
-        <h1 className="text-secondary text-4xl font-code">Swipe to find your pair programmer for life</h1>
-        <h1 className="text-secondary text-4xl font-code">Swipe to find your pair programmer for life</h1>
-        <form onSubmit={handleSubmit}>
-            <label for="lookingFor">Looking For:</label>
-            <select id="lookingFor" name="lookingFor" onChange ={e => setLookingFor(e.target.value)}>
-                <option value="No Preference">No Preference</option>
-                <option value="Woman">Man</option>
-                <option value="Man">Woman</option>
-                <option value="Friends">Friends</option>
-            </select>
-            <button type="submit">Filter</button>
-        </form>
+    <section>
         <div>
-            <div className='tinderCards'>
-                <div className='tinderCardsContainer'>
-                {users.map(user=> (
-                    <TinderCard
-                    className='swipe'
-                    key={user.id}
-                    preventSwipe={['up', 'down']}
-                    onSwipe={dir => swiped(dir, user.firstName, user.id)}
-                    onCardLeftScreen={() => outOfFrame(user.firstName)}>
-                        {currentUser.id !== user.id && !swiper?.likedUsers?.includes(user.id) && !swiper?.rejectedUsers?.includes(user.id) ? <div className='card' style={{backgroundImage: `url(${user.photos})`}}>
-                            <h1 className='card'>{user.firstName}</h1>
-                        </div>:
-                        <div></div>
-                        }
-                    </TinderCard>
-                ))}
-                </div>
-                <div className='swipeDirection'>
-                    {lastDirection == 'left'? <h2 className='infoText'>You Pushed!</h2> : <h2 className='infoText' />}
-                    {lastDirection == 'right'? <h2 className='infoText'>You Pulled!</h2> : <h2 className='infoText' />}
+            <h1 className="text-primary text-4xl font-code mt-8">Swipe right to send a pull request</h1>
+            <h1 className="text-red text-4xl font-code mt-8">Swipe left to push</h1>
+            <form onSubmit={handleSubmit}>
+                <label className="uppercase text-m font-code text-db mb-2" for="lookingFor">Looking For:</label>
+                <select className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-3/12 ease-linear transition-all duration-150 font-code"id="lookingFor" name="lookingFor" onChange ={e => setLookingFor(e.target.value)}>
+                    <option value="No Preference">No Preference</option>
+                    <option value="Woman">Man</option>
+                    <option value="Man">Woman</option>
+                    <option value="Friends">Friends</option>
+                </select>
+                <button className=" px-6 py-3 mt-10 text-sm ml-5 font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" type="submit">Filter</button>
+            </form>
+        
+            <div>
+                <div className='tinderCards'>
+                    <div className='tinderCardsContainer'>
+                    {users.map(user=> (
+                        <TinderCard
+                        className='swipe'
+                        key={user.id}
+                        preventSwipe={['up', 'down']}
+                        onSwipe={dir => swiped(dir, user.firstName, user.id)}
+                        onCardLeftScreen={() => outOfFrame(user.firstName)}>
+                            {currentUser.id !== user.id && !swiper?.likedUsers?.includes(user.id) && !swiper?.rejectedUsers?.includes(user.id) ? <div className='card' style={{backgroundImage: `url(${user.photos})`}}>
+                                <h1 className='card'>{user.firstName}</h1>
+                            </div>:
+                            <div></div>
+                            }
+                        </TinderCard>
+                    ))}
+                    </div>
+                    <div className='swipeDirection'>
+                        {lastDirection == 'left'? <h2 className='infoText'>You Pushed!</h2> : <h2 className='infoText' />}
+                        {lastDirection == 'right'? <h2 className='infoText'>You Pulled!</h2> : <h2 className='infoText' />}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     )
 }
