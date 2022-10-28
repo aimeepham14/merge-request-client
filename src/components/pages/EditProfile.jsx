@@ -76,6 +76,7 @@ export default function EditProfile(props) {
             await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/edit`, {data: {userId, id}})
             const thisUser ={...props.currentUser}
             props.setCurrentUser(thisUser)
+            props.handleLogout()
             navigate(`/`)
             
         } catch (err) {
@@ -370,7 +371,7 @@ export default function EditProfile(props) {
                             id="Gender"
                             name="Gender"
                             onChange={e => setForm({...form, gender: e.target.value})}
-                            value={form.gender}
+                            value="Man"
                             className="mr-2 text-blac border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                             />
                             Man
@@ -381,10 +382,10 @@ export default function EditProfile(props) {
                             id="Gender"
                             name="Gender"
                             onChange={e => setForm({...form, gender: e.target.value})}
-                            value={form.gender}
+                            value="Woman"
                             className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                             />
-                            Women
+                            Woman
                         </label>
                         <label htmlFor='gender' className='font-code2 text-yellow'>
                             <input
@@ -392,7 +393,7 @@ export default function EditProfile(props) {
                             id="Gender"
                             name="Gender"
                             onChange={e => setForm({...form, gender: e.target.value})}
-                            value={form.gender}
+                            value="More"
                             className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                             />
                             More
@@ -414,7 +415,7 @@ export default function EditProfile(props) {
                             id="lookingFor"
                             name="lookingFor"
                             onChange={e => setForm({...form, lookingFor: e.target.value})}
-                            value={form.lookingFor}
+                            value="Man"
                             className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                             />
                             Man
@@ -425,10 +426,10 @@ export default function EditProfile(props) {
                             id="lookingFor"
                             name="lookingFor"
                             onChange={e => setForm({...form, lookingFor: e.target.value})}
-                            value={form.lookingFor}
+                            value="Woman"
                             className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                             />
-                            Women
+                            Woman
                         </label>
                         <label htmlFor='lookingFor' className='font-code2 text-yellow'>
                             <input
@@ -436,7 +437,7 @@ export default function EditProfile(props) {
                             id="lookingFor"
                             name="lookingFor"
                             onChange={e => setForm({...form, lookingFor: e.target.value})}
-                            value={form.lookingFor}
+                            value="Friends"
                             className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                             />
                             Friends
@@ -447,7 +448,7 @@ export default function EditProfile(props) {
                             id="lookingFor"
                             name="lookingFor"
                             onChange={e => setForm({...form, lookingFor: e.target.value})}
-                            value={form.lookingFor}
+                            value="No Preference"
                             className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                             />
                             No Preference
@@ -534,7 +535,7 @@ export default function EditProfile(props) {
 
             <div className="w-full lg:w-4/12 px-4">
                 <div className="relative w-full mb-3">
-                { loading ? <img src={photo} style={{height: 250}}></img>: <img src={photo}></img> }
+                { loading ? <img src={photo} style={{height: 250}} alt="profile pic"></img>: <img src={photo} alt="profile pic"></img> }
                 </div>
             </div>
 

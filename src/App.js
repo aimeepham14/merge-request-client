@@ -84,7 +84,7 @@ function App() {
           />
           <Route
             path="/profile/:userId/edit"
-            element={currentUser ? <EditProfile currentUser={currentUser} setCurrentUser={setCurrentUser}/> : <Navigate to="/login" />}
+            element={currentUser ? <EditProfile currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogout={handleLogout}/> : <Navigate to="/login" />}
           />
 
 
