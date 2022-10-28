@@ -17,7 +17,6 @@ export default function ChatBox({currentUser, selectedUser, usersMessages, other
 
         try {
             const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/messages/new`, reqBody)
-            console.log("RESPONSE FROM CHATBOX", response.data)
             usersMessages()
             otherUsersMessages()
             setChat('')
