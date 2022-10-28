@@ -15,6 +15,7 @@ import Swipe from './components/pages/Swipe'
 import Requests from './components/pages/Requests'
 import RequestsProfile from './components/pages/RequestsProfile'
 import SecureAccount from './components/pages/SecureAccount'
+import Loading from './components/pages/Loading'
 
 import './App.css'
 import jwt_decode from 'jwt-decode'
@@ -75,27 +76,27 @@ function App() {
           {/* conditionally render auth locked routes */}
           <Route 
             path="/profile"
-            element={currentUser ? <Profile handleLogout={handleLogout} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : <Navigate to="/login" />}
+            element={currentUser ? <Profile handleLogout={handleLogout} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : <Loading />}
           />
           <Route 
             path="/swipe/:userId"
-            element={currentUser ? <Swipe currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Navigate to="/login" />}
+            element={currentUser ? <Swipe currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Loading />}
           />
           <Route 
             path="/requests"
-            element={currentUser ? <Requests currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Navigate to="/login" />}
+            element={currentUser ? <Requests currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Loading />}
           />
           <Route
             path="/profile/:userId/edit"
-            element={currentUser ? <EditProfile currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogout={handleLogout}/> : <Navigate to="/login" />}
+            element={currentUser ? <EditProfile currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogout={handleLogout}/> : <Loading />}
           />
           <Route 
             path="/requests/:requestId"
-            element={currentUser ? <RequestsProfile currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Navigate to="/login" />}
+            element={currentUser ? <RequestsProfile currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Loading />}
           />
           <Route 
             path="/profile/:userId/secure"
-            element={currentUser ? <SecureAccount currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Navigate to="/login" />}
+            element={currentUser ? <SecureAccount currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Loading />}
           />
 
         </Routes>
