@@ -3,7 +3,6 @@ import { useState } from 'react'
 export default function Chat({sortedMessages}) {
     const displayMessages = sortedMessages.map((message,i) => {
         const timePosted = new Date(message.timestamp)
-        console.log(timePosted)
         const time = timePosted.toLocaleString()
         return (
             <div key={`${i}`}>
