@@ -12,9 +12,11 @@ import Register from './components/pages/Register'
 import Welcome from './components/pages/Welcome'
 import Navbar from './components/Navbar'
 import Swipe from './components/pages/Swipe'
+import Requests from './components/pages/Requests'
+import RequestsProfile from './components/pages/RequestsProfile'
+
 import './App.css'
 import jwt_decode from 'jwt-decode'
-import Requests from './components/pages/Requests'
 
 function App() {
   // the currently logged in user will be stored up here in state
@@ -85,6 +87,10 @@ function App() {
           <Route
             path="/profile/:userId/edit"
             element={currentUser ? <EditProfile currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogout={handleLogout}/> : <Navigate to="/login" />}
+          />
+          <Route 
+            path="/requests/profile"
+            element={currentUser ? <RequestsProfile currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Navigate to="/login" />}
           />
 
 
