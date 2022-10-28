@@ -12,7 +12,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 	const [password, setPassword] = useState('');
 	const [birthDay, setBirthDay] = useState('1');
 	const [birthMonth, setBirthMonth] = useState('1');
-	const [birthYear, setBirthYear] = useState('');
+	const [birthYear, setBirthYear] = useState('2004');
 	const [gender, setGender] = useState('');
 	const [city, setCity] = useState('');
 	const [biography, setBiography] = useState('');
@@ -22,11 +22,26 @@ export default function Register({ currentUser, setCurrentUser }) {
 	//CLOUDINARY
 	const [photo, setPhoto] = useState('');
 	const [loading, setLoading] = useState(false);
-	
+	const [age, setAge] = useState('')
 
 	let newDate = new Date()
 	let date = newDate.getDate()
 	let month = newDate.getMonth() + 1
+
+	useEffect(()=> {
+		const setUserAge = () => {
+			let today = date
+		let birthDate = birthDay
+		let age = newDate.getFullYear() - birthYear
+		let m = newDate.getMonth() - birthMonth
+		if(m < 0 || (m===0 && date < birthDate)) {
+			age--
+		}
+		console.log('YOU ARE',age + "YEARS OLD")
+		setAge(age)
+		}
+		setUserAge()
+	},[birthYear])
 
 	useEffect(()=> {
 		setBirthDay(date)
@@ -67,7 +82,8 @@ export default function Register({ currentUser, setCurrentUser }) {
 				biography,
 				lookingFor,
 				photo,
-				favoritePLanguage
+				favoritePLanguage,
+				age
 			}
 			const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/register`, reqBody)
 
