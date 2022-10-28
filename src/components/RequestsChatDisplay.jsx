@@ -45,6 +45,7 @@ export default function RequestsChatDisplay({currentUser, selectedUser}) {
         const messageArray = {}
         messageArray['name'] = currentUser?.firstName
         messageArray['img_url'] = currentUser?.photo
+        messageArray['id'] = currentUser?.id
         messageArray['content'] = message.content
         messageArray['timestamp'] = message.createdAt
         messages.push(messageArray)
@@ -57,6 +58,7 @@ export default function RequestsChatDisplay({currentUser, selectedUser}) {
         const messageArray = {}
         messageArray['name'] = selectedUser?.firstName
         messageArray['img_url'] = selectedUser?.photo
+        messageArray['id'] = selectedUser?._id
         messageArray['content'] = message.content
         messageArray['timestamp'] = message.createdAt
         messages.push(messageArray)
@@ -68,7 +70,10 @@ export default function RequestsChatDisplay({currentUser, selectedUser}) {
     return (
         <div>
             <Chat 
-            sortedMessages={sortedMessages}/>
+            sortedMessages={sortedMessages}
+            currentUser={currentUser}
+            selectedUser={selectedUser}
+            />
             <ChatBox 
             currentUser={currentUser}
             selectedUser={selectedUser}
