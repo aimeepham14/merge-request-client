@@ -89,7 +89,7 @@ function App() {
             element={currentUser ? <EditProfile currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogout={handleLogout}/> : <Navigate to="/login" />}
           />
           <Route 
-            path="/requests/profile"
+            path="/requests/:requestId"
             element={currentUser ? <RequestsProfile currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Navigate to="/login" />}
           />
 

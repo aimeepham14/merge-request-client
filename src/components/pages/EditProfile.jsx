@@ -262,7 +262,7 @@ export default function EditProfile(props) {
                 <label className="block uppercase text-m font-code text-db mb-2" htmlFor="lastName">
                     Last Name
                 </label>
-                <input type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.lastName} id="lastName" nChange={e => setForm({...form, lastName: e.target.value})}/>
+                <input type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.lastName} id="lastName" onChange={e => setForm({...form, lastName: e.target.value})}/>
                 </div>
             </div>
             <div className="w-full lg:w-4/12 px-4">
