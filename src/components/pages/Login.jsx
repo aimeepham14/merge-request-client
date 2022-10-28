@@ -95,6 +95,10 @@ export default function Login({ currentUser, setCurrentUser }) {
 			SIGN IN
 		</button>
 
+		<div className="text-red text-2xl mt-3 mb-6 font-code uppercase"> 
+			{msg}
+		</div>
+
 		<p class="text-center font-code text-primary">
 			No account? 
 			<Link to="/register" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code mr-10 underline">
