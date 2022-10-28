@@ -64,6 +64,7 @@ export default function Swipe({currentUser}) {
                     matchedUsers: data.matchedUsers,
                     likedUsers: data.likedUsers,
                     rejectedUsers: data.rejectedUsers,
+                    biography: data.biography,
                     photos: data.photo,
                     favoritePLanguage: data.favoritePLanguage
                 }
@@ -104,6 +105,7 @@ export default function Swipe({currentUser}) {
                     likedUsers: data.likedUsers,
                     rejectedUsers: data.rejectedUsers,
                     photos: data.photo,
+                    biography: data.biography,
                     favoritePLanguage: data.favoritePLanguage
                 }
             setCheckUSer(info)
@@ -276,6 +278,7 @@ export default function Swipe({currentUser}) {
                         likedUsers: data.likedUsers,
                         rejectedUsers: data.rejectedUsers,
                         photos: data.photo,
+                        biography: data.biography,
                         favoritePLanguage: data.favoritePLanguage
                     }
                     )
@@ -361,7 +364,11 @@ export default function Swipe({currentUser}) {
                             {currentUser.id !== user.id && !swiper?.likedUsers?.includes(user.id) && !swiper?.rejectedUsers?.includes(user.id) ? 
                             <div className='card relative mb-6' style={{backgroundImage: `url(${user.photos})`}}>
                                 <div className='font-code text-2xl text-primary'>{user.firstName}</div>
+                                <div className='font-code text-2xl text-primary'>{user.age}</div>
+                                <div className='font-code text-2xl text-primary'>Bio: {user.biography}</div>
+                                <div className='font-code text-2xl text-primary'>Favorite Programming Language: {user.favoritePLanguage}</div>
                             </div>:
+                
                             <div></div> 
                             }
                         </TinderCard>
