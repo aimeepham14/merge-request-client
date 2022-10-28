@@ -14,12 +14,12 @@ export default function Requests({currentUser}) {
         <div style={{backgroundColor: 'black', color:'white'}}>
             <RequestsHeader currentUser={currentUser}/>
             <div className="bg-[#1C1C1C] pt-8 pb-4">
-            <a href="#_" className="relative inline-flex items-center justify-center px-6 py-4 overflow-hidden font-code font-medium tracking-tighter text-white text-code bg-gray-800 rounded-lg group">
+            <a href="#_" className="relative inline-flex items-center justify-center px-6 py-4 mr-2 overflow-hidden font-code font-medium tracking-tighter text-white text-code bg-gray-800 rounded-lg group">
                 <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#28AD95] rounded-full group-hover:w-56 group-hover:h-56"></span>
                 <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
                 <span className="relative" onClick={()=> setSelectedUser(null)} >Requests && Matches</span>
             </a>
-            <a href="#_" className="relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-code font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
+            <a href="#_" className="relative inline-flex items-center justify-center px-8 py-4 ml-2 overflow-hidden font-code font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
                 <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#28B8F9] rounded-full group-hover:w-56 group-hover:h-56"></span>
                 <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
                 <span className="relative text-code" disabled={!selectedUser}  >Chat || Code</span>
