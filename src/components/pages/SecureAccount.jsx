@@ -5,20 +5,26 @@ import jwt_decode from 'jwt-decode'
 import { Link } from 'react-router-dom'
 
 export default function SecureAccount( {setCurrentUser, currentUser}){
-    const [form, setForm] = useState({})
     const navigate = useNavigate()
     const { userId } = useParams()
     const [password, setPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
+    const [email, setEmail] = useState('')
 
     useEffect(()=> {
-        setForm(currentUser)
+        setEmail(currentUser.email)
+        // getUser()
     }, [])
 
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
-            const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/edit`, form)
+            const reqBody = {
+				email, 
+				password,
+                newPassword
+			}
+            const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/secureaccount`, reqBody)
             const { token } = response.data
             localStorage.setItem("jwt", token)
             const decode = jwt_decode(token)
@@ -52,20 +58,25 @@ export default function SecureAccount( {setCurrentUser, currentUser}){
                     <label className="block uppercase text-m font-code text-db mb-2" htmlFor="email">
                         Email
                     </label>
-                    <input type="email" required className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.email} id="email" onChange={e => setForm({...form, email: e.target.value})} />
+                    <input type="email" required className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={email} id="email" onChange={e => setEmail(e.target.value)} />
                 </div>
                 <div className="relative w-full mb-3">
                     <label className="block uppercase text-m font-code text-db mb-2" htmlFor="email">
                         Old Password
                     </label>
-                    <input type="password" required className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.password} id="password" oonChange={e => setForm({...form, password: e.target.value})} />
+                    <input type="password" required className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={password} placeholder='*******' id="password" onChange={e => setPassword(e.target.value)} />
                 </div>
                 <div className="relative w-full mb-3">
                     <label className="block uppercase text-m font-code text-db mb-2" htmlFor="email">
                         New Password
                     </label>
-                    <input type="password" required className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.password} id="password" oonChange={e => setForm({...form, newPassword: e.target.value})} />
+                    <input type="password" required className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={newPassword} placeholder='Code a new password...' id="password" onChange={e => setNewPassword(e.target.value)} />
                 </div>
+                <button  
+                    id="delete"
+                    type="submit"
+                    className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none"
+                    style={{color: 'rgb(242,61,65)'}}>Submit Changes</button>
             </div>
             </div>
             
