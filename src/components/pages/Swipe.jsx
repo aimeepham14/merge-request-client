@@ -38,7 +38,8 @@ export default function Swipe({currentUser}) {
                     matchedUsers: response.data.matchedUsers,
                     photo: response.data.photo,
                     rejectedUsers: response.data.rejectedUsers,
-                    id: response.data._id
+                    id: response.data._id,
+                    age: response.data.age
                 }
                 setSwiper(responseData)
             } catch(err) {
