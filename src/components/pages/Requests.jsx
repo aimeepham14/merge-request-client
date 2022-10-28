@@ -7,7 +7,7 @@ import axios from 'axios'
 import userEvent from '@testing-library/user-event'
 
 export default function Requests({currentUser}) {
-    const [ selectedUser, setSelectedUser ] = useState([])
+    const [ selectedUser, setSelectedUser ] = useState(null)
     // const [matches, setMatches] = useState([])
     console.log('SELECTED USER', selectedUser)
     const Requests = (
