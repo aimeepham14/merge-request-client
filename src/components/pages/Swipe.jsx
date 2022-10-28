@@ -335,7 +335,7 @@ export default function Swipe({currentUser}) {
     return(
     <section>
         <div className="bg-[#1C1C1C]">
-            <h1 className="text-primary text-4xl font-code">Swipe right to send a pull request</h1>
+            <h1 className="text-primary text-4xl font-code pt-8">Swipe right to send a pull request</h1>
             <h1 className="text-red text-4xl font-code mt-8">Swipe left to push</h1>
             <form onSubmit={handleSubmit}>
                 <label className="uppercase text-m font-code text-db mb-2 mr-4" for="lookingFor">Looking For:</label>
