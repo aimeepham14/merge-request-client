@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import QueryString from 'qs'
+import { useNavigate } from 'react-router-dom'
 
 export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
     const [matchedUsersProf, setMatchedUsersProf] = useState([])
     const [matches, setMatches] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         const allMatches = async () => {
@@ -38,7 +40,27 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
         }
         setallmatches()
     }, [matches])
+
+
     
+    const handleDelete = async (match) => {
+        const body = {
+            otherperson: match.email
+        }
+        const body2 = {
+            otherperson: currentUser.email
+        }
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${currentUser.id}/deletematch`, body)
+            const response2 = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${match._id}deletematch`, body2)
+        }catch(err){
+            console.log(err)
+        }finally {
+            navigate('/requests')
+        }
+    }
+
+
     return (
         <div>
             {matchedUsersProf?.map(match=> (
@@ -47,6 +69,7 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
                         <img src={match.photo}/>
                     </div>
                     <p>{match.firstName}</p>
+                    <button onClick={() => handleDelete(match)}>Delete Match</button>
                 </div>
             ))}
         </div>
