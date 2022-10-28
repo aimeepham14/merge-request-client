@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { Navigate, useNavigate, Link } from 'react-router-dom'
 
-export default function Chat({sortedMessages}) {
+export default function Chat({sortedMessages, currentUser, selectedUser}) {
+    const navigate = useNavigate()
+    const profileLink = [<Link to={`/requests/${selectedUser._id}`}>{selectedUser.firstName}'s Profile</Link>] 
     const displayMessages = sortedMessages.map((message,i) => {
         const timePosted = new Date(message.timestamp)
         const time = timePosted.toLocaleString()
@@ -18,6 +21,7 @@ export default function Chat({sortedMessages}) {
     })
     return (
        <div>
+        {!selectedUser ? <p></p> : profileLink}
         {displayMessages}
        </div>
     )
