@@ -30,7 +30,9 @@ export default function Swipe({currentUser}) {
                     birthDay: response.data.birthDay,
                     birthMonth: response.data.birthMonth,
                     birthYear: response.data.birthYear,
+                    location: response.data.location,
                     city: response.data.city,
+                    state: response.data.state,
                     email: response.data.email,
                     favoritePLanguage: response.data.favoritePLanguage,
                     firstName: response.data.firstName,
@@ -71,7 +73,9 @@ export default function Swipe({currentUser}) {
                     rejectedUsers: data.rejectedUsers,
                     biography: data.biography,
                     photos: data.photo,
+                    location: data.location,
                     city: data.city,
+                    state: data.state,
                     favoritePLanguage: data.favoritePLanguage,
                 }
                 )
@@ -119,7 +123,8 @@ export default function Swipe({currentUser}) {
             try {
                 
                 const getDistance = users.map(async (data) => {
-                    const distance = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/api`, {params: { usersCities: data.city, userCity: currentUser.city}})
+                    const distance = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/api`, {params: { usersCities: data.location, userCity: currentUser.location}})
+                    console.log(distance)
                     const miles = Math.round(distance.data.distance / 1.609)
                     return({
                         id: data.id,
@@ -132,6 +137,8 @@ export default function Swipe({currentUser}) {
                         biography: data.biography,
                         photos: data.photos,
                         city: data.city,
+                        location: data.location,
+                        state: data.state,
                         favoritePLanguage: data.favoritePLanguage,
                         distance: miles
                     })   
@@ -173,6 +180,7 @@ export default function Swipe({currentUser}) {
                     email: data.email,
                     matchedUsers: data.matchedUsers,
                     likedUsers: data.likedUsers,
+                    location: data.location,
                     rejectedUsers: data.rejectedUsers,
                     photos: data.photo,
                     biography: data.biography,
