@@ -8,9 +8,10 @@ export default function Swipe({currentUser}) {
     const [users, setUsers] = useState([])
     const [lookingForUsers, setLookingForUsers] = useState([])
     const [lookingFor, setLookingFor] = useState("No Preference")
-    const [swiper, setSwiper] = useState({})
+    const [swiper, setSwiper] = useState([])
     const { userId } = useParams()
     const [lastDirection, setLastDirection] = useState('')
+    const [userDistance, setUserDistance] = useState({})
 
     // SAVE THE USER ID THAT APPEARS ON SWIPE
     const [selectedUser, setSelectedUser] = useState('')
@@ -55,6 +56,8 @@ export default function Swipe({currentUser}) {
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users`)
             const responseData = response.data
             console.log('DATA FROM BACKEND',responseData)
+            
+          
             const info = responseData.map((data)=> {
                 return({
                     id: data._id,
@@ -66,13 +69,24 @@ export default function Swipe({currentUser}) {
                     rejectedUsers: data.rejectedUsers,
                     biography: data.biography,
                     photos: data.photo,
-                    favoritePLanguage: data.favoritePLanguage
+                    city: data.city,
+                    favoritePLanguage: data.favoritePLanguage,
                 }
                 )
             })
             console.log('SAVED INFO DATA', info)
             setUsers(info)
             // console.log(users)
+            
+            
+            
+            // const test = users.map((data) => {
+            //     return{
+            //         user: data.id,
+            //         city: data.city
+            //     }
+            // })
+            // console.log("test", test)
             
         } catch(err) {
             console.warn(err)
@@ -82,6 +96,43 @@ export default function Swipe({currentUser}) {
     useEffect(() => {
         getAllUsers()
     },[])
+
+    // useEffect(() => {
+    //     const getDistance = async(e) => {
+    //         try {
+    //             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/api`)
+    //             console.log(response.data)
+
+    //         } catch(err) {
+    //             console.warn(err)
+    //         }
+    //     } 
+    //     getDistance()
+    // }, [])
+    useEffect(() => {
+        try {
+            const getDistance = users.map(async (data) => {
+            
+                const distance = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/api`, {params: { usersCities: data.city, userCity: currentUser.city}})
+                console.log(distance.data)
+                return({
+                    id: data.id,
+                    distance: distance.data.distance
+                })   
+                
+            })
+            
+                Promise.allSettled(getDistance).then((results) => console.log("here", results.value))
+                
+        } catch(err){
+            console.warn(err)
+        }
+    },[users, currentUser.city])
+
+    
+
+    
+    
 
     useEffect(()=> {
         const getSelectedUser = async() => {
