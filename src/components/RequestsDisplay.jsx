@@ -8,7 +8,7 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
     const [matchedUsersProf, setMatchedUsersProf] = useState([])
     const [matches, setMatches] = useState([])
     const [showModal, setShowModal] = useState(false)
-    const [matchSelected, setMatchSelected] = useState({})
+    const [matchSelected, setMatchSelected] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -84,11 +84,11 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
                 //     <p>{match.firstName}</p>
                 //     <button onClick={() => handleDelete(match)}>Delete Match</button>
                 // </div>
-                <div key={match.id}> 
+                <div key={match._id}> 
                     <div className="p-8 bg-[#1C1C1C] shadow-slate-50  shadow-2xl min-h-screen flex justify-center items-center ">
                         <div class="max-w-lg container bg-[#1C1C1C] shadow-slate-50  shadow-2xl rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl ">
                             <div className="flex items-center justify-center" onClick={() => setSelectedUser(match)}>
-                                <img  className="scale-75" src={match.photo}/>
+                                <img  className="scale-75" src={match.photo} alt={`${match.name}'s pic`}/>
                             </div>
                             <div>
                                 <div className="pt-2 pb-8">
@@ -98,7 +98,7 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
                                     <p className="mt-6 text-white font-code"> About me: {match.biography}</p>
                         
                                 <div className="flex justify-around mt-8">
-                                    <button className="w-5/12 px-6 py-3 mt-3 mb-6 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-[#F23D41] hover:bg-red-800 hover:shadow-lg focus:outline-none"  value={match} onClick={(e) => { handleModal(e); setMatchSelected(e.target.value)}}>Delete Match {console.log(match)}
+                                    <button className="w-5/12 px-6 py-3 mt-3 mb-6 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-[#F23D41] hover:bg-red-800 hover:shadow-lg focus:outline-none"   onClick={(e) => { handleModal(e); setMatchSelected(match)}}>Delete Match {console.log(match)}
                                     </button>
                                 </div>
                             
