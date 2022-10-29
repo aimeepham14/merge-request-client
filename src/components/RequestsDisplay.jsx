@@ -80,7 +80,7 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
                   </div>
                   <div>
                     <div className="pt-2 pb-8">
-                      <h1 className="text-5xl font-bold font-code text-primary">{match.firstName}</h1>
+                      <h1 className="text-5xl font-bold font-code text-primary" onClick={() => setSelectedUser(match)}>{match.firstName}</h1>
                       <p class="text-2xl text-white font-code pt-2">{match.city}</p>
               
                       <p className="mt-6 text-white font-code"> About me: {match.biography}</p>

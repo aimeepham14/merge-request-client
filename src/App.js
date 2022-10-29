@@ -16,6 +16,7 @@ import Requests from './components/pages/Requests'
 import RequestsProfile from './components/pages/RequestsProfile'
 import SecureAccount from './components/pages/SecureAccount'
 import Loading from './components/pages/Loading'
+import AboutMR from './components/pages/AboutMR'
 
 import './App.css'
 import jwt_decode from 'jwt-decode'
@@ -73,6 +74,12 @@ function App() {
             element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} />}
           />
 
+          <Route 
+            path="/aboutmr"
+            element={<AboutMR 
+          />}
+          />
+
           {/* conditionally render auth locked routes */}
           <Route 
             path="/profile"
@@ -98,7 +105,6 @@ function App() {
             path="/profile/:userId/secure"
             element={currentUser ? <SecureAccount currentUser={currentUser} setCurrentUser={setCurrentUser}/>  : <Loading />}
           />
-
         </Routes>
       </div>
     </Router>
