@@ -12,6 +12,7 @@ export default function Swipe({currentUser}) {
     const { userId } = useParams()
     const [lastDirection, setLastDirection] = useState('')
     const [distance, setDistance] = useState('')
+    const [usersDistance, setUsersDistance] = useState([])
 
 
     // SAVE THE USER ID THAT APPEARS ON SWIPE
@@ -110,6 +111,8 @@ export default function Swipe({currentUser}) {
     //     } 
     //     getDistance()
     // }, [])
+    const test = 1
+
     useEffect(() => {
         const distances = async () => {
             
@@ -139,20 +142,16 @@ export default function Swipe({currentUser}) {
                     // Promise.allSettled(getDistance).then((results) => results.forEach((result) => setUserDistance(...result.value)))
                     
                 const promiseValues = await Promise.all(getDistance);
+                console.log("PROMISES MADE", promiseValues)
                 
-                setUsers(promiseValues)
+                setUsersDistance(promiseValues)
         
             } catch(err){
                 console.warn(err)
             }
         }
         distances()
-    },[swiper])
-
-    
-
-    
-    
+    },[distance])
 
     useEffect(()=> {
         const getSelectedUser = async() => {
@@ -365,7 +364,7 @@ export default function Swipe({currentUser}) {
         try {
             const filtered = []
             for (let i = 0; i < users.length; i ++) {
-                if (users[i].distance <= distance) {
+                if (usersDistance[i].distance <= distance) {
                     filtered.push(users[i])
                     
                 } else {
