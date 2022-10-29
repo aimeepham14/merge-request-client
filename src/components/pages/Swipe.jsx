@@ -11,7 +11,8 @@ export default function Swipe({currentUser}) {
     const [swiper, setSwiper] = useState([])
     const { userId } = useParams()
     const [lastDirection, setLastDirection] = useState('')
-    const [userDistance, setUserDistance] = useState({})
+    const [distance, setDistance] = useState('')
+
 
     // SAVE THE USER ID THAT APPEARS ON SWIPE
     const [selectedUser, setSelectedUser] = useState('')
@@ -110,24 +111,43 @@ export default function Swipe({currentUser}) {
     //     getDistance()
     // }, [])
     useEffect(() => {
-        try {
-            const getDistance = users.map(async (data) => {
+        const distances = async () => {
             
-                const distance = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/api`, {params: { usersCities: data.city, userCity: currentUser.city}})
-                console.log(distance.data)
-                return({
-                    id: data.id,
-                    distance: distance.data.distance
-                })   
+            try {
                 
-            })
-            
-                Promise.allSettled(getDistance).then((results) => console.log("here", results.value))
+                const getDistance = users.map(async (data) => {
+                    const distance = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/api`, {params: { usersCities: data.city, userCity: currentUser.city}})
+                    const miles = Math.round(distance.data.distance / 1.609)
+                    return({
+                        id: data.id,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                        email: data.email,
+                        matchedUsers: data.matchedUsers,
+                        likedUsers: data.likedUsers,
+                        rejectedUsers: data.rejectedUsers,
+                        biography: data.biography,
+                        photos: data.photos,
+                        city: data.city,
+                        favoritePLanguage: data.favoritePLanguage,
+                        distance: miles
+                    })   
+                    
+                })
+
                 
-        } catch(err){
-            console.warn(err)
+                    // Promise.allSettled(getDistance).then((results) => results.forEach((result) => setUserDistance(...result.value)))
+                    
+                const promiseValues = await Promise.all(getDistance);
+                
+                setUsers(promiseValues)
+        
+            } catch(err){
+                console.warn(err)
+            }
         }
-    },[users, currentUser.city])
+        distances()
+    },[swiper])
 
     
 
@@ -311,7 +331,7 @@ export default function Swipe({currentUser}) {
     //     getLookingForUsers()
     // },[])
 
-    const handleSubmit = async (e) => {
+    const handlePreference = async (e) => {
         e.preventDefault()
         try {
     
@@ -336,6 +356,26 @@ export default function Swipe({currentUser}) {
                 })
                 console.log('RESETTING USERS FROM PREFERENCE',info)
                 setUsers(info)
+        } catch(err) {
+            console.warn(err)
+        }
+    }
+
+    const handleDistance = async (e) => {
+        e.preventDefault()
+        try {
+            const filtered = []
+            for (let i = 0; i < users.length; i ++) {
+                if (users[i].distance <= distance) {
+                    filtered.push(users[i])
+                    
+                } else {
+                    continue
+                }
+            }
+            console.log(filtered)
+            setUsers(filtered)
+            
         } catch(err) {
             console.warn(err)
         }
@@ -391,7 +431,7 @@ export default function Swipe({currentUser}) {
         <div className="bg-[#1C1C1C]">
             <h1 className="text-primary text-4xl font-code pt-8">Swipe right to send a pull request</h1>
             <h1 className="text-red text-4xl font-code mt-8">Swipe left to push</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handlePreference}>
                 <label className="uppercase text-m font-code text-db mb-2 mr-4" for="lookingFor">Looking For:</label>
                 <select className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-3/12 ease-linear transition-all duration-150 font-code"id="lookingFor" name="lookingFor" onChange ={e => setLookingFor(e.target.value)}>
                     <option value="No Preference">No Preference</option>
@@ -401,6 +441,13 @@ export default function Swipe({currentUser}) {
                 </select>
                 <button className=" px-6 py-3 mt-10 text-sm ml-5 font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" type="submit">Filter</button>
             </form>
+            <form onSubmit={handleDistance}>
+                <label className="uppercase text-m font-code text-db mb-2 mr-4" for="lookingFor">Filter by Distance:</label>
+                <input type="number" id="distance" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-3/12 ease-linear transition-all duration-150 font-code" value={distance} onChange={e => {setDistance(e.target.value)}}></input>
+                <label className="uppercase text-m font-code text-db mb-2 mr-4" for="lookingFor"> miles</label>
+                <button className=" px-6 py-3 mt-10 text-sm ml-5 font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" type="submit">Filter</button>
+            </form>
+            
         
             <div className='dashboard'>
                 <div className='swipe-container bg-[#1C1C1C]'>
