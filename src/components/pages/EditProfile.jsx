@@ -18,8 +18,50 @@ export default function EditProfile(props) {
     const [showModal, setShowModal] = useState(false)
     const [biography, setBiography] = useState('');
     const navigate = useNavigate()
+    const [autocompleteCities, setAutocompleteCities] = useState([]);
+	const [autocompleteStates, setAutocompleteStates] = useState([]);
+  	const [autocompleteErr, setAutocompleteErr] = useState("");
 
-    console.log("decode", decode)
+    const fetchPlace = async (text) => {
+		try {
+			// console.log(process.env.REACT_APP_MAP_API_KEY)
+		  const res = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${text}.json?access_token=${process.env.REACT_APP_MAP_API_KEY}&autocomplete=true`);
+		  if (!res.ok) throw new Error(res.statusText);
+		  return await res.json();
+		} catch (err) {
+		  return { error: "Unable to retrieve places" };
+		}
+	  };
+	const handleCityChange = async (e) => {
+		// setCity(e.target.value);
+        setForm({...form, city: e.target.value})
+		// if (!city) return;
+	
+		const res = await fetchPlace(form.city);
+		console.log(res)
+		!autocompleteCities.includes(e.target.value) &&
+		  res.features &&
+		  setAutocompleteCities(res.features.map((place) => place.text));
+		res.error ? setAutocompleteErr(res.error) : setAutocompleteErr("");
+	  };
+
+	  const handleStateChange = async (e) => {
+        setForm({...form, state: e.target.value})
+		// setState(e.target.value);
+		// if (!state) return;
+	
+		!autocompleteStates.includes(e.target.value) &&
+		  setAutocompleteStates(states);
+	  };
+
+
+    const states = [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
+	  'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
+	  'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
+	  'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
+	  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
+
+    // console.log("decode", decode)
     useEffect(() => {
         const getUser = async () => {
             try {
@@ -32,6 +74,13 @@ export default function EditProfile(props) {
         }
         getUser()
     }, [userId])
+
+    useEffect(()=> {
+        setForm({...form, location: `${form.city},${form.state}`})
+    },[form.city])
+    useEffect(()=> {
+        setForm({...form, location: `${form.city},${form.state}`})
+    },[form.state])
 
     const uploadImage = async e => {
 		const files = e.target.files[0];
@@ -64,6 +113,13 @@ export default function EditProfile(props) {
             console.warn(err)
         }
     }
+
+    // const handleStateChange = async (e) => {
+       
+    // }
+    // const handleCityChange = async (e) => {
+        
+    // }
 
     const handleModal = async (e) => {
         e.preventDefault()
@@ -134,11 +190,30 @@ export default function EditProfile(props) {
             <div className="w-full lg:w-4/12 px-4">
                 <div className="relative w-full mb-3">
                 <label className="block uppercase text-m font-code text-db mb-2" htmlFor="city">
-                    City, State
+                    City
                 </label>
-                <input type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.city} id="city" onChange={e => setForm({...form, city: e.target.value})} />
-                </div>
-            </div>
+                <input list='cities' type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.city} id="city" onChange={handleCityChange} pattern={autocompleteCities.join("|")}
+            		autoComplete="on" required/>
+					<datalist id="cities">
+				{autocompleteCities.map((city, i) => (
+				<option key={i}>{city}</option>
+				))}
+					</datalist>
+					</div>
+				</div>
+            <div className="w-full lg:w-4/12 px-4">
+                <div className="relative w-full mb-3">
+                <label className="block uppercase text-m font-code text-db mb-2" htmlFor="state">
+                    State
+                </label>
+                <input lists='state' type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.state} id="state" onChange={handleStateChange} pattern={autocompleteStates.join("|")} autoComplete="on" required/>
+				<datalist id="states">
+				{autocompleteStates.map((state, i) => (
+				<option key={i}>{state}</option>
+				))}
+					</datalist>
+					</div>
+				</div>
 
 
             <div className="w-full lg:w-4/12 px-4">

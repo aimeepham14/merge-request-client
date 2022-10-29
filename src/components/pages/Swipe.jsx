@@ -379,6 +379,10 @@ export default function Swipe({currentUser}) {
         }
     }
 
+    const handleResetDistance = async(e) => {
+        window.location.reload(false);
+    }
+
     const swipedUsers = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`)
@@ -444,6 +448,7 @@ export default function Swipe({currentUser}) {
                 <input type="number" id="distance" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-3/12 ease-linear transition-all duration-150 font-code" value={distance} onChange={e => {setDistance(e.target.value)}}></input>
                 <label className="uppercase text-m font-code text-db mb-2 mr-4" for="lookingFor"> miles</label>
                 <button className=" px-6 py-3 mt-10 text-sm ml-5 font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" type="submit">Filter</button>
+                <button className=" px-6 py-3 mt-10 text-sm ml-5 font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" onClick={handleResetDistance}>Reset Distance</button>
             </form>
             
         
