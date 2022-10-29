@@ -44,6 +44,7 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
 
     
     const handleDelete = async (match) => {
+        setSelectedUser(null)
         const body = {
             otherperson: match.email
         }
@@ -56,7 +57,7 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
         }catch(err){
             console.log(err)
         }finally {
-            navigate('/requests')
+            window.location.reload(false);
         }
     }
 
@@ -71,10 +72,10 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
                 //     <p>{match.firstName}</p>
                 //     <button onClick={() => handleDelete(match)}>Delete Match</button>
                 // </div>
-                <div key={match.id} onClick={() => setSelectedUser(match)}> 
+                <div key={match.id}> 
                 <div className="p-8 bg-[#1C1C1C] shadow-slate-50  shadow-2xl min-h-screen flex justify-center items-center ">
                 <div class="max-w-lg container bg-[#1C1C1C] shadow-slate-50  shadow-2xl rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl ">
-                  <div className="flex items-center justify-center">
+                  <div className="flex items-center justify-center" onClick={() => setSelectedUser(match)}>
                       <img  className="scale-75" src={match.photo}/>
                   </div>
                   <div>
