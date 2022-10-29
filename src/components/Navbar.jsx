@@ -8,20 +8,26 @@ export default function Navbar({ currentUser, handleLogout }) {
 		return(
 		<>
 			{/* if the user is logged in... */}
-			<Link to={`/swipe/${currentUser.id}`} class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-				swipe
-			</Link>
-			<Link to="/" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-4">
-				<span onClick={handleLogout}>logout</span>
-			</Link>
+			<div class="flex md:flex md:flex-grow justify-start space-x-1">
+				<Link to={`/swipe/${currentUser.id}`} class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
+					swipe
+				</Link>
 
-			<Link to="/profile" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-				profile
-			</Link>
+				<Link to="/requests" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
+					requests
+				</Link>
+			</div>
+			<div class="flex md:flex md:flex-grow justify-end space-x-1">
+				<Link to="/profile" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10 pl-10">
+					profile
+				</Link>
 
-			<Link to="/requests" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-				requests
-			</Link>
+				<Link to="/" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-4">
+					<span onClick={handleLogout}>logout</span>
+				</Link>
+			</div>
+
+			
 		</>
 		)
 	 }
@@ -56,4 +62,3 @@ export default function Navbar({ currentUser, handleLogout }) {
 		</nav>
 	)
 }
-
