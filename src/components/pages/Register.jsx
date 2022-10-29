@@ -15,6 +15,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 	const [birthYear, setBirthYear] = useState('2004');
 	const [gender, setGender] = useState('');
 	const [city, setCity] = useState('');
+	const [state, setState] = useState('')
 	const [biography, setBiography] = useState('');
 	const [lookingFor, setLookingFor] = useState('');
 	const [msg, setMsg] = useState('');
@@ -24,7 +25,14 @@ export default function Register({ currentUser, setCurrentUser }) {
 	const [loading, setLoading] = useState(false);
 	const [age, setAge] = useState('')
 	const [autocompleteCities, setAutocompleteCities] = useState([]);
+	const [autocompleteStates, setAutocompleteStates] = useState([]);
   	const [autocompleteErr, setAutocompleteErr] = useState("");
+
+	  const states = [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
+	  'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
+	  'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
+	  'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
+	  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
 
 	let newDate = new Date()
 	let date = newDate.getDate()
@@ -48,8 +56,16 @@ export default function Register({ currentUser, setCurrentUser }) {
 		console.log(res)
 		!autocompleteCities.includes(e.target.value) &&
 		  res.features &&
-		  setAutocompleteCities(res.features.map((place) => place.place_name));
+		  setAutocompleteCities(res.features.map((place) => place.text));
 		res.error ? setAutocompleteErr(res.error) : setAutocompleteErr("");
+	  };
+
+	  const handleStateChange = async (e) => {
+		setState(e.target.value);
+		if (!state) return;
+	
+		!autocompleteStates.includes(e.target.value) &&
+		  setAutocompleteStates(states);
 	  };
 
 	useEffect(()=> {
@@ -79,7 +95,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 			formData.append('file', files);
 			setLoading(true)
 			try {
-				const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.CLOUDNAME}/image/upload`,formData)
+				const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDNAME}/image/upload`,formData)
 				console.log(response.data)
 				setPhoto(response.data.url)
 				// console.log(photos)
@@ -102,7 +118,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 				birthMonth,
 				birthYear,
 				gender,
-				city,
+				city: `${city}, ${state}`,
 				biography,
 				lookingFor,
 				photo,
@@ -192,13 +208,28 @@ export default function Register({ currentUser, setCurrentUser }) {
 				<div className="w-full lg:w-4/12 px-4">
 					<div className="relative w-full mb-3">
 					<label className="block uppercase text-m font-code text-db mb-2" htmlFor="city">
-						City, State
+						City
 					</label>
 					<input list='places' type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={city} id="city" onChange={handleCityChange} pattern={autocompleteCities.join("|")}
             		autoComplete="on" required/>
 					<datalist id="places">
 				{autocompleteCities.map((city, i) => (
 				<option key={i}>{city}</option>
+				))}
+					</datalist>
+					</div>
+				</div>
+
+				<div className="w-full lg:w-4/12 px-4">
+					<div className="relative w-full mb-3">
+					<label className="block uppercase text-m font-code text-db mb-2" htmlFor="city">
+						State
+					</label>
+					<input list='states' type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={state} id="city" onChange={handleStateChange} pattern={autocompleteStates.join("|")}
+            		autoComplete="on" required/>
+					<datalist id="states">
+				{autocompleteStates.map((state, i) => (
+				<option key={i}>{state}</option>
 				))}
 					</datalist>
 					</div>
