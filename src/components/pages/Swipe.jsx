@@ -351,8 +351,7 @@ export default function Swipe({currentUser}) {
                         photos: data.photo,
                         biography: data.biography,
                         favoritePLanguage: data.favoritePLanguage
-                    }
-                    )
+                    })
                 })
                 console.log('RESETTING USERS FROM PREFERENCE',info)
                 setUsers(info)
