@@ -521,6 +521,7 @@ export default function EditProfile(props) {
                     </button>
                 </div>
             </Modal>
+            <div>
             <button className="hover:bg-grey text-white font-bold py-2 px-4 rounded inline-flex items-center" style={{color: 'rgb(255,255,255)'}}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
             <path d="M13.024 9.25c.47 0 .827-.433.637-.863a4 4 0 00-4.094-2.364c-.468.05-.665.576-.43.984l1.08 1.868a.75.75 0 00.649.375h2.158zM7.84 7.758c-.236-.408-.79-.5-1.068-.12A3.982 3.982 0 006 10c0 .884.287 1.7.772 2.363.278.38.832.287 1.068-.12l1.078-1.868a.75.75 0 000-.75L7.839 7.758zM9.138 12.993c-.235.408-.039.934.43.984a4 4 0 004.094-2.364c.19-.43-.168-.863-.638-.863h-2.158a.75.75 0 00-.65.375l-1.078 1.868z" />
@@ -528,6 +529,7 @@ export default function EditProfile(props) {
             </svg>
                 <Link to={`/profile/${userId}/secure`}>Secure Settings</Link>
             </button>
+            </div>
             </div>
             
             <hr className="mt-6 border-b-1 border-blueGray-300"/>
