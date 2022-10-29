@@ -16,6 +16,7 @@ export default function EditProfile(props) {
     const [photo, setPhoto] = useState('')
     const [loading, setLoading] = useState(false)
     const [showModal, setShowModal] = useState(false)
+    const [biography, setBiography] = useState('');
     const navigate = useNavigate()
 
     console.log("decode", decode)
@@ -98,10 +99,10 @@ export default function EditProfile(props) {
 
 
     return(
-    <section className=" py-1 bg-black">
-    <div className="w-full lg:w-8/12 px-4 mx-auto mt-6 bg-black">
-    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-black border-0">
-        <div className="rounded-t bg-black mb-0 px-6 py-6 ">
+    <section className=" py-1 bg-[#1C1C1C]">
+    <div className="w-full lg:w-8/12 px-4 mx-auto mt-6 bg-[#1C1C1C]">
+    <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-[#1C1C1C] shadow-slate-50  shadow-2xl border-0">
+        <div className="rounded-t bg-[#1C1C1C] mb-0 px-6 py-6 ">
         <div className="text-center flex justify-between">
             <h6 className="text-secondary text-4xl font-code">
             Fix your bug below {props.currentUser.firstName}
@@ -491,13 +492,14 @@ export default function EditProfile(props) {
             <button
             id="button"
             type="submit"
-            className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none"
+            className="w-52 px-6 py-3 mt-3 mr-2 mb-6 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none"
+            style={{color: 'rgb(255,255,255)'}}
             >
             Update Profile
             </button>
             <button  
             id="delete"
-            className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" onClick = {handleModal}
+            className="w-52 px-6 py-3 mt-3 ml-2 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-[#F23D41] hover:bg-red-800 hover:shadow-lg focus:outline-none" style={{color: 'rgb(255,255,255)'}} onClick = {handleModal}
             >
                 {/* onClick={() => handleDelete(`${props.currentUser._id}`)} */}
             Delete Profile
@@ -519,22 +521,27 @@ export default function EditProfile(props) {
                     </button>
                 </div>
             </Modal>
-            <button className="w-5/12 px-6 py-3 mt-3 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" style={{color: 'rgb(242,61,65)'}}>
-            <Link to={`/profile/${userId}/secure`}>Secure Settings</Link>
+            <button className="hover:bg-grey text-white font-bold py-2 px-4 rounded inline-flex items-center" style={{color: 'rgb(255,255,255)'}}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+            <path d="M13.024 9.25c.47 0 .827-.433.637-.863a4 4 0 00-4.094-2.364c-.468.05-.665.576-.43.984l1.08 1.868a.75.75 0 00.649.375h2.158zM7.84 7.758c-.236-.408-.79-.5-1.068-.12A3.982 3.982 0 006 10c0 .884.287 1.7.772 2.363.278.38.832.287 1.068-.12l1.078-1.868a.75.75 0 000-.75L7.839 7.758zM9.138 12.993c-.235.408-.039.934.43.984a4 4 0 004.094-2.364c.19-.43-.168-.863-.638-.863h-2.158a.75.75 0 00-.65.375l-1.078 1.868z" />
+            <path fill-rule="evenodd" d="M14.13 4.347l.644-1.117a.75.75 0 00-1.299-.75l-.644 1.116a6.954 6.954 0 00-2.081-.556V1.75a.75.75 0 00-1.5 0v1.29a6.954 6.954 0 00-2.081.556L6.525 2.48a.75.75 0 10-1.3.75l.645 1.117A7.04 7.04 0 004.347 5.87L3.23 5.225a.75.75 0 10-.75 1.3l1.116.644A6.954 6.954 0 003.04 9.25H1.75a.75.75 0 000 1.5h1.29c.078.733.27 1.433.556 2.081l-1.116.645a.75.75 0 10.75 1.298l1.117-.644a7.04 7.04 0 001.523 1.523l-.645 1.117a.75.75 0 101.3.75l.644-1.116a6.954 6.954 0 002.081.556v1.29a.75.75 0 001.5 0v-1.29a6.954 6.954 0 002.081-.556l.645 1.116a.75.75 0 001.299-.75l-.645-1.117a7.042 7.042 0 001.523-1.523l1.117.644a.75.75 0 00.75-1.298l-1.116-.645a6.954 6.954 0 00.556-2.081h1.29a.75.75 0 000-1.5h-1.29a6.954 6.954 0 00-.556-2.081l1.116-.644a.75.75 0 00-.75-1.3l-1.117.645a7.04 7.04 0 00-1.524-1.523zM10 4.5a5.475 5.475 0 00-2.781.754A5.527 5.527 0 005.22 7.277 5.475 5.475 0 004.5 10a5.475 5.475 0 00.752 2.777 5.527 5.527 0 002.028 2.004c.802.458 1.73.719 2.72.719a5.474 5.474 0 002.78-.753 5.527 5.527 0 002.001-2.027c.458-.802.719-1.73.719-2.72a5.475 5.475 0 00-.753-2.78 5.528 5.528 0 00-2.028-2.002A5.475 5.475 0 0010 4.5z" clip-rule="evenodd" />
+            </svg>
+                <Link to={`/profile/${userId}/secure`}>Secure Settings</Link>
             </button>
             </div>
             
-            <hr classNameName="mt-6 border-b-1 border-blueGray-300"/>
+            <hr className="mt-6 border-b-1 border-blueGray-300"/>
 
             <h6 className="text-primary text-2xl text-2xl font-code mt-3 mb-6 font-bold uppercase">
             Profile Preview
             </h6>
 
-            <div className="w-full lg:w-4/12 px-4">
-                <div className="relative w-full mb-3">
-                { loading ? <img src={photo} style={{height: 250}} alt="profile pic"></img>: <img src={form.photo} alt="profile pic"></img> }
-                </div>
-            </div>
+            <div className="flex-auto ">
+				<div className=" mb-3 sm:w-6/12 hero container mx-auto pb-10">
+					{ loading ? <img src={photo} ></img>: <img className="scale-125 " src={photo}></img> }
+					<p className="font-code2 text-yellow mt-10 text-2xl">{biography}</p>
+				</div>
+			</div>
         </form>
         </div>
     </div>
@@ -544,3 +551,8 @@ export default function EditProfile(props) {
 
     )
 }
+
+
+
+
+
