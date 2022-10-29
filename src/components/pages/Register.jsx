@@ -79,7 +79,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 			formData.append('file', files);
 			setLoading(true)
 			try {
-				const response = await axios.post(`https://api.cloudinary.com/v1_1/dspcnzoiy/image/upload`,formData)
+				const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.CLOUDNAME}/image/upload`,formData)
 				console.log(response.data)
 				setPhoto(response.data.url)
 				// console.log(photos)
