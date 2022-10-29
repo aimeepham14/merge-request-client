@@ -153,11 +153,6 @@ export default function Swipe({currentUser}) {
         distances()
     },[distance])
 
-    
-
-    
-    
-
     useEffect(()=> {
         const getSelectedUser = async() => {
             try{
