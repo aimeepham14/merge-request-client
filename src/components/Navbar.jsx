@@ -1,37 +1,42 @@
 import { Link, useParams } from 'react-router-dom'
-
+import { useState } from 'react'
+import NavBarMobile from './NavBarMobile'
+import NavBarMobileNewUser from './NavBarMobileNewUser'
 
 export default function Navbar({ currentUser, handleLogout }) {
 	const { userId } = useParams()
-	
+	const [active, setActive] = useState(false)
+
+	const showMenu = () => {
+        setActive(!active)
+    }
+
 	 const loggedIn = () => {
 		return(
 		<>
 			{/* if the user is logged in... */}
-			<div class="md: flex flow-root">
-				<div class="float-left">
-					<Link to="/" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-						<p>Home</p>
-					</Link>
-					<Link to={`/swipe/${currentUser.id}`} class="mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-						swipe
-					</Link>
 
-					<Link to="/requests" class="mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-						requests
-					</Link>
+			<div className='right-6 md:hidden top-6 scale-150' style={{alignItems:'center'}} onClick={showMenu} >
+                <img src='/HamburgerMenu.png' style={{height: '50px', marginLeft:'39vw'}} className='scale-150 cursor-pointer'/>
+            </div>
+			
+			<div className="hidden md:flex flow-root">
+				<div className="float-left">
+					<Link to="/" className="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">MergeRequest</Link>
+
+					<Link to={`/swipe/${currentUser.id}`} className="mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">Swipe</Link>
+
+					<Link to="/requests" className="mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">Requests</Link>
+					<Link to="/aboutmr" className="mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">aboutmr</Link>
 				</div>
-				<div class="float-right">
-					<Link to="/profile" class="mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10 pl-10">
-						profile
-					</Link>
 
-					<Link to="/" class=" mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-4">
-						<span onClick={handleLogout}>logout</span>
-					</Link>
+				<div className="float-right">
+					<Link to="/profile" className="mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10 pl-10">Profile</Link>
+
+					<Link to="/" className=" mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-4"><span onClick={handleLogout}>logout</span></Link>
 				</div>
 			</div>
-
+			<NavBarMobile showMenu={showMenu} active={active} currentUser={currentUser} handleLogout={handleLogout}/>
 			
 		</>
 		)
@@ -40,17 +45,20 @@ export default function Navbar({ currentUser, handleLogout }) {
 	 const loggedOut = () => {
 		return(
 		<>
+		<div className='right-6 md:hidden top-6 scale-150' style={{alignItems:'center'}} onClick={showMenu} >
+                <img src='/HamburgerMenu.png' style={{height: '50px', marginLeft:'39vw'}} className='scale-150 cursor-pointer'/>
+            </div>
 			{/* if the user is not logged in... */}
-			<Link to="/" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-				<p>Home</p>
-			</Link>
-			<Link to="/register" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-				Sign-Up
-			</Link>
+			<div className='hidden md:flex flow-root'>
+			<Link to="/" className="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">MergeRequest</Link>
 
-			<Link to="/login" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-				Login
-			</Link>
+			<Link to="/register" className="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">Sign-Up</Link>
+
+			<Link to="/login" className="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">Login</Link>
+
+			</div>
+			
+			<NavBarMobileNewUser showMenu={showMenu} active={active} currentUser={currentUser} handleLogout={handleLogout}/>
 		</>
 	 	)
 	 }
