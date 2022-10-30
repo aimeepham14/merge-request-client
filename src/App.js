@@ -16,7 +16,7 @@ import Requests from './components/pages/Requests'
 import RequestsProfile from './components/pages/RequestsProfile'
 import SecureAccount from './components/pages/SecureAccount'
 import Loading from './components/pages/Loading'
-import AboutMR from './components/pages/AboutMR'
+import AboutMe from './components/pages/AboutMe'
 
 import './App.css'
 import jwt_decode from 'jwt-decode'
@@ -75,8 +75,8 @@ function App() {
           />
 
           <Route 
-            path="/aboutmr"
-            element={<AboutMR 
+            path="/aboutme"
+            element={<AboutMe
           />}
           />
 
