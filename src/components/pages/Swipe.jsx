@@ -77,6 +77,7 @@ export default function Swipe({currentUser}) {
                     city: data.city,
                     state: data.state,
                     favoritePLanguage: data.favoritePLanguage,
+                    age: data.age
                 }
                 )
             })
@@ -356,6 +357,7 @@ export default function Swipe({currentUser}) {
                         likedUsers: data.likedUsers,
                         rejectedUsers: data.rejectedUsers,
                         photos: data.photo,
+                        age: data.age,
                         biography: data.biography,
                         favoritePLanguage: data.favoritePLanguage
                     })
@@ -472,10 +474,10 @@ export default function Swipe({currentUser}) {
                         onCardLeftScreen={() => outOfFrame(user.firstName)}>
                             {currentUser.id !== user.id && !swiper?.likedUsers?.includes(user.id) && !swiper?.rejectedUsers?.includes(user.id) ? 
                             <div className='card relative mb-6' style={{backgroundImage: `url(${user.photos})`}}>
-                                <div className='font-code text-2xl text-primary'>{user.firstName}</div>
-                                <div className='font-code text-2xl text-primary'>{user.age}</div>
-                                <div className='font-code text-2xl text-primary'>Bio: {user.biography}</div>
-                                <div className='font-code text-2xl text-primary'>Favorite Programming Language: {user.favoritePLanguage}</div>
+                                <div style={{marginTop: '50px'}} className='font-code text-2xl text-primary'>{user.firstName}, {user.age}</div>
+                                <div className='font-code text-2xl text-primary'>{user.location}</div>
+                                <div style={{ textAlign:"left"  ,margin: '7vw', bottom: '7vh', position: 'absolute'}}className='font-code text-1xl text-primary'>Bio: {user.biography}</div>
+                                <div style={{textAlign:"left", margin: '7vw', bottom: '1vh', position: 'absolute'}} className='font-code text-1xl text-primary'>Favorite Programming Language: {user.favoritePLanguage}</div>
                             </div>:
                 
                             <div></div> 
