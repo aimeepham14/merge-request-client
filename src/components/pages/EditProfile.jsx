@@ -91,7 +91,7 @@ export default function EditProfile(props) {
 			try {
 				const response = await axios.post(`https://api.cloudinary.com/v1_1/dspcnzoiy/image/upload`,formData)
 				console.log(response.data)
-				setPhoto(response.data.url)
+				setForm({...form, photo: response.data.url})
 				// console.log(photos)
 			}catch(err){
 				console.warn(err)
