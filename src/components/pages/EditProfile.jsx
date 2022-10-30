@@ -171,7 +171,7 @@ export default function EditProfile(props) {
             User Information
             </h6>
             <div className="flex flex-wrap">
-            <div className="w-full lg:w-4/12 px-4">
+            <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                 <label className="block uppercase text-m font-code text-db mb-2" htmlFor="firstName">
                     First Name
@@ -179,7 +179,7 @@ export default function EditProfile(props) {
                 <input type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.firstName} id="firstName" onChange={e => setForm({...form, firstName: e.target.value})} />
                 </div>
             </div>
-            <div className="w-full lg:w-4/12 px-4">
+            <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                 <label className="block uppercase text-m font-code text-db mb-2" htmlFor="lastName">
                     Last Name
@@ -187,7 +187,7 @@ export default function EditProfile(props) {
                 <input type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.lastName} id="lastName" onChange={e => setForm({...form, lastName: e.target.value})}/>
                 </div>
             </div>
-            <div className="w-full lg:w-4/12 px-4">
+            <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                 <label className="block uppercase text-m font-code text-db mb-2" htmlFor="city">
                     City
@@ -201,7 +201,7 @@ export default function EditProfile(props) {
 					</datalist>
 					</div>
 				</div>
-            <div className="w-full lg:w-4/12 px-4">
+            <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                 <label className="block uppercase text-m font-code text-db mb-2" htmlFor="state">
                     State

@@ -441,11 +441,17 @@ export default function Swipe({currentUser}) {
     return(
     <section>
         <div className="bg-[#1C1C1C]">
-            <h1 className="text-primary text-4xl font-code pt-8">Swipe right to send a pull request</h1>
-            <h1 className="text-red text-4xl font-code mt-8">Swipe left to push</h1>
+            <h1 className="text-primary text-4xl font-code pt-8">Swipe right to send a pull request<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-10 h-10 inline-block">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+            </svg>
+            </h1>
+            <h1 className="text-red text-4xl font-code mt-8"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-10 h-10 inline-block">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+            </svg>
+            Swipe left to push</h1>
             <form onSubmit={handlePreference}>
-                <label className="uppercase text-m font-code text-db mb-2 mr-4" for="lookingFor">Looking For:</label>
-                <select className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-3/12 ease-linear transition-all duration-150 font-code"id="lookingFor" name="lookingFor" onChange ={e => setLookingFor(e.target.value)}>
+                <label className="uppercase text-m font-code text-db mb-2 mr-4" for="lookingFor">LOOKING FOR:</label>
+                <select className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-2/12 ease-linear transition-all duration-150 font-code"id="lookingFor" name="lookingFor" onChange ={e => setLookingFor(e.target.value)}>
                     <option value="No Preference">No Preference</option>
                     <option value="Woman">Man</option>
                     <option value="Man">Woman</option>
@@ -455,10 +461,10 @@ export default function Swipe({currentUser}) {
             </form>
             <form onSubmit={handleDistance}>
                 <label className="uppercase text-m font-code text-db mb-2 mr-4" for="lookingFor">Filter by Distance:</label>
-                <input type="number" id="distance" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-3/12 ease-linear transition-all duration-150 font-code" value={distance} onChange={e => {setDistance(e.target.value)}}></input>
+                <input type="number" id="distance" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-1/12 ease-linear transition-all duration-150 font-code" value={distance} onChange={e => {setDistance(e.target.value)}}></input>
                 <label className="uppercase text-m font-code text-db mb-2 mr-4" for="lookingFor"> miles</label>
-                <button className=" px-6 py-3 mt-10 text-sm ml-5 font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" type="submit">Filter</button>
-                <button className=" px-6 py-3 mt-10 text-sm ml-5 font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" onClick={handleResetDistance}>Reset Distance</button>
+                <button className=" px-6 py-3 mt-8 text-sm ml-5 font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" type="submit">Filter</button>
+                <button className=" px-6 py-3 mt-8 text-sm ml-5 font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" onClick={handleResetDistance}>Reset</button>
             </form>
             
         
@@ -473,13 +479,43 @@ export default function Swipe({currentUser}) {
                         onSwipe={dir => swiped(dir, user.firstName, user.id)}
                         onCardLeftScreen={() => outOfFrame(user.firstName)}>
                             {currentUser.id !== user.id && !swiper?.likedUsers?.includes(user.id) && !swiper?.rejectedUsers?.includes(user.id) ? 
-                            <div className='card relative mb-6' style={{backgroundImage: `url(${user.photos})`}}>
-                                <div style={{marginTop: '50px'}} className='font-code text-2xl text-primary'>{user.firstName}, {user.age}</div>
-                                <div className='font-code text-2xl text-primary'>{user.location}</div>
-                                <div style={{ textAlign:"left"  ,margin: '7vw', bottom: '7vh', position: 'absolute'}}className='font-code text-1xl text-primary'>Bio: {user.biography}</div>
-                                <div style={{textAlign:"left", margin: '7vw', bottom: '1vh', position: 'absolute'}} className='font-code text-1xl text-primary'>Favorite Programming Language: {user.favoritePLanguage}</div>
+                            // <div className='card relative mb-6' style={{backgroundImage: `url(${user.photos})`}}>
+                            //     <div style={{marginTop: '50px'}} className='font-code text-2xl text-primary'>{user.firstName}, {user.age}</div>
+                            //     <div className='font-code text-2xl text-primary'>{user.location}</div>
+                            //     <div style={{ textAlign:"left"  ,margin: '7vw', bottom: '7vh', position: 'absolute'}}className='font-code text-1xl text-primary'>Bio: {user.biography}</div>
+                            //     <div style={{textAlign:"left", margin: '7vw', bottom: '1vh', position: 'absolute'}} className='font-code text-1xl text-primary'>Favorite Programming Language: {user.favoritePLanguage}</div>
+                            // </div>:
+                            <div className="max-w-lg container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+                                
+                                <img className="w-min cursor-pointer" src={currentUser.photo}  alt="user profile pic" />
+                                <div className="flex p-4 justify-between">
+                                    <div className="items-center space-x-2">
+                                    <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {currentUser.firstName}, {currentUser.age} </h1>
+                                    <h2 className="text-gray-800 cursor-pointer text-2xl mb-2  text-left font-code text-aqua"> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 inline-block mr-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                                        </svg> 
+                                        {currentUser.city}
+                                    </h2>
+                                    <h2 className="text-gray-800 cursor-pointer text-1xl mb-2 text-left font-code text-aqua mt-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 inline-block mr-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                                        </svg>
+                                         {currentUser.favoritePLanguage}
+                                    </h2>
+                                    <h2 className="text-gray-800 cursor-pointer text-1xl mb-2 text-left font-code text-aqua">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 inline-block mr-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                        </svg>
+                                         {currentUser.biography}
+                                    </h2>
+                            
+                                    </div>
+                                </div>
                             </div>:
-                
+                    
+                    
                             <div></div> 
                             }
                         </TinderCard>
