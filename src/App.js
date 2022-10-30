@@ -75,9 +75,8 @@ function App() {
           />
 
           <Route 
-            path="/aboutme"
-            element={<AboutMe
-          />}
+            path="/aboutus"
+            element={<AboutMe/>}
           />
 
           {/* conditionally render auth locked routes */}

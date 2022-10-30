@@ -16,12 +16,13 @@ export default function Navbar({ currentUser, handleLogout }) {
 		<>
 			{/* if the user is logged in... */}
 
-			<div className='right-6 md:hidden top-6 scale-150' style={{alignItems:'center'}} onClick={showMenu} >
+			<div className='right-6 lg:hidden top-6 scale-150' style={{alignItems:'center'}} onClick={showMenu} >
                 <img src='/HamburgerMenu.png' style={{height: '50px', marginLeft:'39vw'}} className='scale-150 cursor-pointer'/>
             </div>
 			
-			<div className="lg:flex flex-grow items-center" id="example-navbar-warning">
+			<div className="lg:flex sm:hidden flex-grow items-center" id="example-navbar-warning">
 						<Link to="/" className="text-3xl font-code leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-yellow">Merge Request</Link>
+						<Link to="/aboutus" className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">About <img src='/favicon.ico' style={{height: '25px'}}></img></Link>
 				<ul className="flex flex-col lg:flex-row list-none ml-auto">
 					<li className="nav-item">
 						<Link to={`/swipe/${currentUser.id}`} className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">Swipe</Link>
@@ -30,7 +31,6 @@ export default function Navbar({ currentUser, handleLogout }) {
 						<Link to="/requests" className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">Requests</Link>
 					</li>
 					<li className="nav-item">
-						<Link to="/aboutme" className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">About Me</Link>
 					</li>
 					<li className="nav-item">
 					<Link to="/profile" className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">Profile</Link>
