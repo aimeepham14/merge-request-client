@@ -83,6 +83,38 @@
   padding: 10px;
 }
 
+.left .image {
+  display: flex;
+  justify-content:end;
+  float: right;
+}
+
+.right .image {
+  display: flex;
+  justify-content:start;
+  float: left;
+}
+
+.left .name {
+  justify-content: end;
+}
+
+
+.left .msg {
+  justify-content: end;
+  padding: 20px 20px 20px 20px;
+  background-color:#58b666;
+  box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+}
+
+
+.right .msg {
+  padding: 20px 20px 20px 20px;
+  background-color:#6fbced;
+  box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+}
+
+
 
 
 

@@ -26,16 +26,19 @@ export default function ChatBox({currentUser, selectedUser, usersMessages, other
     }
 
     return (
-        <div>
+        
+        <div className="relative bg-[#1C1C1C]">
             <textarea 
             type='text' 
-            className="w-full rounded-lg border-white p-4 pr-12 text-sm shadow-sm"
+            className="rounded-full w-full pl-6 pr-12 py-2 focus:outline-none  h-20 placeholder-gray-100 bg-gray-900 text-white font-code shadow-slate-50  shadow-2xl"
             placeholder='Code a message...' 
             onChange={e => setChat(e.target.value)}
             value={chat}
-            style={{color: 'black'}}
             ></textarea>
-            <button class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-2xl text-yellow font-code" type='submit' onClick={newMessage}>Submit Text</button>
+            <button className="w-2/12 px-6 py-3 mt-3 mb-6 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" type='submit' onClick={newMessage}>Send Message</button>
         </div>
+    
+
+
     )
 }
