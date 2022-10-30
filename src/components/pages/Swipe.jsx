@@ -487,28 +487,28 @@ export default function Swipe({currentUser}) {
                             // </div>:
                             <div className="max-w-lg container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
                                 
-                                <img className="w-min cursor-pointer" src={currentUser.photo}  alt="user profile pic" />
+                                <img className="w-min cursor-pointer" src={user.photo}  alt="user profile pic" />
                                 <div className="flex p-4 justify-between">
                                     <div className="items-center space-x-2">
-                                    <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {currentUser.firstName}, {currentUser.age} </h1>
+                                    <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {user.firstName}, {user.age} </h1>
                                     <h2 className="text-gray-800 cursor-pointer text-2xl mb-2  text-left font-code text-aqua"> 
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 inline-block mr-2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                                         </svg> 
-                                        {currentUser.city}
+                                        {user.city}
                                     </h2>
                                     <h2 className="text-gray-800 cursor-pointer text-1xl mb-2 text-left font-code text-aqua mt-6">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 inline-block mr-2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
                                         </svg>
-                                         {currentUser.favoritePLanguage}
+                                         {user.favoritePLanguage}
                                     </h2>
                                     <h2 className="text-gray-800 cursor-pointer text-1xl mb-2 text-left font-code text-aqua">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 inline-block mr-2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                                         </svg>
-                                         {currentUser.biography}
+                                         {user.biography}
                                     </h2>
                             
                                     </div>

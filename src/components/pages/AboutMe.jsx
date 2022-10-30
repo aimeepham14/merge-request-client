@@ -1,4 +1,4 @@
-export default function AboutMR(){
+export default function AboutMe(){
     const openInNewTab = url => {
         window.open(url, '_blank', 'noopener,noreferrer');
       };
