@@ -81,7 +81,15 @@
   padding: 10px;
 }
 
+.left {
+  background-color:red;
+  display: flex;
+  justify-content:end;
+}
 
+.right {
+  background-color:green;
+}
 
 
 
