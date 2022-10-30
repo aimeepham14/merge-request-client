@@ -615,7 +615,7 @@ export default function EditProfile(props) {
 
             <div className="flex-auto ">
 				<div className=" mb-3 sm:w-6/12 hero container mx-auto pb-10">
-					{ loading ? <img src={photo} ></img>: <img className="scale-125 " src={photo}></img> }
+					{ loading ? <img src={form.photo} alt="pic preview"></img>: <img className="scale-125 " src={form.photo} alt="pic preview"></img> }
 					<p className="font-code2 text-yellow mt-10 text-2xl">{biography}</p>
 				</div>
 			</div>
