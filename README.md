@@ -41,9 +41,7 @@ To set up Merge Request server, first fork and clone this repository.
 * Make sure to add ``` .env ``` into your ``` .gitignore ```
 * In your new .env file create two variables: ```JWT_SECRET=`<This can be anything>` ``` and ```PORT=8000```
 * In order to upload profile pictures, you will have to set up a Cloudinary account. https://cloudinary.com/home-102622
-* Once you have created an account, make sure to set additional variables in your .env file: ``` CLOUDNAME=<your cloudinary cloudname> ```
-``` CLOUDAPIKEY=<your cloudinary api key> ```
-``` CLOUDINARYSECRET=<your cloudinary secret> ```
+* Once you have created an account, make sure to set additional variables in your .env file: ``` REACT_APP_CLOUDNAME=<your cloudinary cloudname> ```
 * Awesome, your server is set! Make sure to run ``` nodemon ``` in your cloned server respository and make sure the client is also running!
 
 
@@ -147,6 +145,7 @@ Merge Match:
 
 * Sunday
     - CSS Tailwind
+    - Deploy Application
 
 ## MVP
 
@@ -164,9 +163,11 @@ Merge Match:
 
 * Amazing CSS
 * Have users "match" with each other
+* Filter users by distance
 * Report Users
 * Allow users to send pictures to each other
+* Allow users to upload multiple photos
 
 ## Major Hurdles
 
-One of our major hurdles was actually the main function of our application. Allowing users to swipe and having that action chain into adding users into their liked or rejected database tables while checking for matches was a hard system to figure out. Additional hurdles we faced was filtering out available users by preference.
+One of our major hurdles was actually the main function of our application. Allowing users to swipe and having that action chain into adding users into their liked or rejected database tables while checking for matches was a hard system to figure out. Additional hurdles we faced was filtering out available users by preference or distance.
