@@ -191,7 +191,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					</div>
 				</div>
 
-				<div className="w-full lg:w-4/12 px-4">
+				<div className="w-full lg:w-6/12 px-4">
 					<div className="relative w-full mb-3">
 					<label className="block uppercase text-m font-code text-db mb-2" htmlFor="firstName">
 						First Name
@@ -199,7 +199,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					<input type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={firstName} id="firstName" onChange={e => setFirstName(e.target.value)} />
 					</div>
 				</div>
-				<div className="w-full lg:w-4/12 px-4">
+				<div className="w-full lg:w-6/12 px-4">
 					<div className="relative w-full mb-3">
 					<label className="block uppercase text-m font-code text-db mb-2" htmlFor="lastName">
 						Last Name
@@ -207,7 +207,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					<input type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={lastName} id="lastName" onChange={e => setLastName(e.target.value)} />
 					</div>
 				</div>
-				<div className="w-full lg:w-4/12 px-4">
+				<div className="w-full lg:w-6/12 px-4">
 					<div className="relative w-full mb-3">
 					<label className="block uppercase text-m font-code text-db mb-2" htmlFor="city">
 						City
@@ -222,7 +222,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					</div>
 				</div>
 
-				<div className="w-full lg:w-4/12 px-4">
+				<div className="w-full lg:w-6/12 px-4">
 					<div className="relative w-full mb-3">
 					<label className="block uppercase text-m font-code text-db mb-2" htmlFor="city">
 						State
@@ -493,7 +493,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 								value="Man"
 								className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
 								/>
-								Man
+								Men
 							</label>
 							<label htmlFor='lookingFor' className='font-code2 text-yellow'>
 								<input
