@@ -35,7 +35,7 @@ export default function ChatBox({currentUser, selectedUser, usersMessages, other
             onChange={e => setChat(e.target.value)}
             value={chat}
             ></textarea>
-            <button className="w-2/12 px-6 py-3 mt-3 mb-6 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" type='submit' onClick={newMessage}>Submit Text</button>
+            <button className="w-2/12 px-6 py-3 mt-3 mb-6 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" type='submit' onClick={newMessage}>Send Message</button>
         </div>
     
 
