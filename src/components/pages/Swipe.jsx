@@ -19,7 +19,7 @@ export default function Swipe({currentUser}) {
     const [selectedUser, setSelectedUser] = useState('')
     // SAVE THE USER PROFILE THAT APPEARS ON SWIPE
     const [checkUser, setCheckUSer] = useState([])
-   
+
     useEffect(() => {
         const getUser = async () => {
             try {
