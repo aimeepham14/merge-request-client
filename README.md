@@ -1,6 +1,6 @@
 # __Merge Request__
 
-Looking for friends? A soulmate? Look no further than Merge Request, an online connection app. We all know software engineers are focused and introverted so we made an app that make it easy to connect with others to help bring them out of their comfort zone. A dating app for developers to develop meaningful relationships.
+Looking for friends? A soulmate? Look no further than [Merge Request](https://mergerequest.netlify.app/), an online connection app. We all know software engineers are focused and introverted so we made an app that make it easy to connect with others to help bring them out of their comfort zone. A dating app for developers to develop meaningful relationships.
 
 ## Team Members:
 - Aimee Pham
