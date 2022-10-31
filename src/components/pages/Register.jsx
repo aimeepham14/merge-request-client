@@ -28,19 +28,18 @@ export default function Register({ currentUser, setCurrentUser }) {
 	const [autocompleteStates, setAutocompleteStates] = useState([]);
   	const [autocompleteErr, setAutocompleteErr] = useState("");
 
-	  const states = [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
-	  'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
-	  'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
-	  'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
-	  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
+	const states = [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
+	'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
+	'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
+	'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
+	'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
 
 	let newDate = new Date()
 	let date = newDate.getDate()
 	let month = newDate.getMonth() + 1
-
+	// fetches data from api
 	const fetchPlace = async (text) => {
 		try {
-			// console.log(process.env.REACT_APP_MAP_API_KEY)
 		  const res = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${text}.json?access_token=${process.env.REACT_APP_MAP_API_KEY}&autocomplete=true`);
 		  if (!res.ok) throw new Error(res.statusText);
 		  return await res.json();
@@ -48,36 +47,33 @@ export default function Register({ currentUser, setCurrentUser }) {
 		  return { error: "Unable to retrieve places" };
 		}
 	  };
+	// used for city autcomplete
 	const handleCityChange = async (e) => {
 		setCity(e.target.value);
 		if (!city) return;
-	
 		const res = await fetchPlace(city);
-		console.log(res)
 		!autocompleteCities.includes(e.target.value) &&
 		  res.features &&
 		  setAutocompleteCities(res.features.map((place) => place.text));
 		res.error ? setAutocompleteErr(res.error) : setAutocompleteErr("");
 	  };
-
+	// used for state autocomplete
 	  const handleStateChange = async (e) => {
 		setState(e.target.value);
 		if (!state) return;
-	
 		!autocompleteStates.includes(e.target.value) &&
 		  setAutocompleteStates(states);
 	  };
 
 	useEffect(()=> {
 		const setUserAge = () => {
-			let today = date
+		let today = date
 		let birthDate = birthDay
 		let age = newDate.getFullYear() - birthYear
 		let m = newDate.getMonth() - birthMonth
 		if(m < 0 || (m===0 && date < birthDate)) {
 			age--
 		}
-		console.log('YOU ARE',age + "YEARS OLD")
 		setAge(age)
 		}
 		setUserAge()
@@ -96,9 +92,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 			setLoading(true)
 			try {
 				const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDNAME}/image/upload`,formData)
-				console.log(response.data)
 				setPhoto(response.data.url)
-				// console.log(photos)
 			}catch(err){
 				console.warn(err)
 			}
@@ -265,6 +259,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					<label className="block uppercase text-m font-code text-db mb-2" for="birthDay">
 						Birth Day
 					</label>
+					{/* makes it so that users cannot input birthdays that don't exist */}
 					{birthMonth == 2 && birthYear % 4 == 0
                         ? 
                         <div>

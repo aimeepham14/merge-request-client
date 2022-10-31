@@ -10,13 +10,10 @@ export default function RequestsChatDisplay({currentUser, selectedUser}) {
     const userId = currentUser.id
     const clickedUserId = selectedUser._id
 
-    // const clickedMatchId = clickedMatch?.id
     const usersMessages = async() => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/messages/${userId}/${clickedUserId}`)
         setUserMessages(response.data)
-        // console.log(response)
-        // console.log(userMessages)
         } catch(err){
             console.warn(err)
         }
@@ -25,13 +22,10 @@ export default function RequestsChatDisplay({currentUser, selectedUser}) {
     const otherUsersMessages = async() => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/messages/${clickedUserId}/${userId}`)
-        setOtherUserMessages(response.data)
-        // console.log(response)
-        // console.log(userMessages)
+            setOtherUserMessages(response.data)
         } catch(err){
             console.warn(err)
         }
-        
     }
 
     useEffect(()=> {
@@ -49,7 +43,7 @@ export default function RequestsChatDisplay({currentUser, selectedUser}) {
         messageArray['content'] = message.content
         messageArray['timestamp'] = message.createdAt
         messages.push(messageArray)
-        console.log(messages)
+
         
     })
 
@@ -62,8 +56,6 @@ export default function RequestsChatDisplay({currentUser, selectedUser}) {
         messageArray['content'] = message.content
         messageArray['timestamp'] = message.createdAt
         messages.push(messageArray)
-        // console.log(messages)
-        
     })
 
     const sortedMessages = messages?.sort((x,y) => x.timestamp.localeCompare(y.timestamp))
