@@ -45,7 +45,7 @@ export default function Login({ currentUser, setCurrentUser }) {
 
 	return (
 		
-	<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 bg-[#1C1C1C] ">
+	<div class="mx-auto max-w-screen h-screen px-4 py-16 sm:px-6 lg:px-8 bg-[#1C1C1C] ">
 	<div class="mx-auto max-w-lg">
 		<h1 class="text-center text-5xl font-code text-primary">
 		You had me at

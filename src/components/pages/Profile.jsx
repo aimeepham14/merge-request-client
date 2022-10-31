@@ -59,12 +59,12 @@ export default function Profile({ currentUser, handleLogout}) {
 
 	return (
 
-	<div className="min-h-screen bg-gray-700 flex justify-center items-center">
-		<div className="max-w-lg container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
-			{/* <div>
-				<h1 class="mt-2 ml-4 font-bold text-gray-800 cursor-pointer hover:text-gray-900 transition duration-100 text-4xl font-code2 text-db">{currentUser.firstName}, {currentUser.age} </h1>
-			</div> */}
-			<img className="w-min cursor-pointer" src={currentUser.photo}  alt="user profile pic" />
+	<div className="min-h-screen bg-[#1C1C1C] flex justify-center items-center ">
+		<div className="max-w-lg container bg-[#1C1C1C] rounded-xl shadow-lg shadow-slate-50  shadow-2xl transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+		
+			<div className= "relative pb-11/12 ">
+			<img className="absolute h-full w-full object-cover cursor-pointer " src={currentUser.photo}  alt="user profile pic" />
+			</div>
 			<div className="flex p-4 justify-between">
 				<div className="items-center space-x-2">
 				<h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {currentUser.firstName}, {currentUser.age} </h1>
@@ -94,9 +94,7 @@ export default function Profile({ currentUser, handleLogout}) {
 					</svg>
 					<Link to={`/profile/${currentUser.id}/edit`}>Edit Profile</Link>
 				</h2>
-				{/* <div className='mb-3 content-center'>
-						<Link to={`/profile/${currentUser.id}/edit`}><button className="bg-orange-700 rounded-md p-2 font-bold ">Edit Profile</button></Link>
-					</div> */}
+			
 				</div>
 			</div>
 		</div>
