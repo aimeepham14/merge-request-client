@@ -4,10 +4,7 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}", './src/components/pages/Welcome.jsx'
   ],
   theme: {
-    screens: {
-      xs: "375px",
-    
-    },
+  
     extend: {
       fontFamily: {
         code: ['Source Code Pro', 'monospace'],
