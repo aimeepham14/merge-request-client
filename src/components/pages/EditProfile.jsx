@@ -70,6 +70,7 @@ export default function EditProfile(props) {
 			'Content-Type': 'application/json'
 		}
 	}
+
     useEffect(() => {
         const getUser = async () => {
             try {
@@ -111,7 +112,7 @@ export default function EditProfile(props) {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
-            const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/edit`, form, options)
+            const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/edit`, form)
             const { token } = response.data
             localStorage.setItem("jwt", token)
             const decode = jwt_decode(token)
