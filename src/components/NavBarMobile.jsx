@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const NavBarMobile = ({showMenu, active, currentUser, handleLogout}) => {
   return (
     <ul className={active ? 'flex-col flex items-center fixed inset-0 left-4/4 uppercase bg-black/40 backdrop-blur-lg gap-8 justify-center p-8 md:hidden md:z-index: 50;' : 'hidden'}>

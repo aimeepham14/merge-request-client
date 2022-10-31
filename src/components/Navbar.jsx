@@ -14,8 +14,6 @@ export default function Navbar({ currentUser, handleLogout }) {
 		return(
 		<>
 			{/* if the user is logged in... */}
-
-	
 			
 			<div className="lg:flex sm:hidden flex-grow items-center" id="example-navbar-warning">
 						<Link to="/" className="text-3xl font-code leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-yellow">Merge Request</Link>

@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import RequestsChatDisplay from '../RequestsChatDisplay'
 import RequestsDisplay from '../RequestsDisplay'
 import RequestsHeader from '../RequestsHeader'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
-import userEvent from '@testing-library/user-event'
 
 export default function Requests({currentUser}) {
     const [ selectedUser, setSelectedUser ] = useState(null)

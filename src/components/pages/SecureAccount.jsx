@@ -2,7 +2,6 @@ import { useState, useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
-import { Link } from 'react-router-dom'
 
 export default function SecureAccount( {setCurrentUser, currentUser}){
     const navigate = useNavigate()

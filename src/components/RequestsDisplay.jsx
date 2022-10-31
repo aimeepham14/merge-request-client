@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import QueryString from 'qs'
 import Modal from './Modal'
 
 export default function RequestsDisplay( {currentUser, setSelectedUser} ) {

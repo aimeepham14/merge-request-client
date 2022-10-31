@@ -30,7 +30,6 @@ export default function Profile({ currentUser, handleLogout}) {
 					const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/auth-locked`, options)
 					// set the secret user message in state
 					setMsg(response.data.msg)
-					console.log(currentUser)
 				} catch (err) {
 					console.warn(err)
 					if (err.response) {
