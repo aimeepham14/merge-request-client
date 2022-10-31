@@ -19,6 +19,13 @@ export default function Swipe({currentUser}) {
     const [selectedUser, setSelectedUser] = useState('')
     // SAVE THE USER PROFILE THAT APPEARS ON SWIPE
     const [checkUser, setCheckUSer] = useState([])
+    const options = {
+		headers: {
+			'authorization': localStorage.getItem('jwt'),
+			'Accept' : 'application/json',
+			'Content-Type': 'application/json'
+		}
+	}
 
     useEffect(() => {
         const getUser = async () => {
@@ -487,7 +494,7 @@ export default function Swipe({currentUser}) {
                             // </div>:
                             <div className="max-w-lg container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
                                 
-                                <img className="w-min cursor-pointer" src={user.photo}  alt="user profile pic" />
+                                <img className="w-min cursor-pointer" src={user.photos}  alt="user profile pic" />
                                 <div className="flex p-4 justify-between">
                                     <div className="items-center space-x-2">
                                     <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {user.firstName}, {user.age} </h1>

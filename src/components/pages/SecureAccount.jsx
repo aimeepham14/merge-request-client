@@ -16,6 +16,14 @@ export default function SecureAccount( {setCurrentUser, currentUser}){
         // getUser()
     }, [])
 
+    const options = {
+		headers: {
+			'authorization': localStorage.getItem('jwt'),
+			'Accept' : 'application/json',
+			'Content-Type': 'application/json'
+		}
+	}
+
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
@@ -24,7 +32,7 @@ export default function SecureAccount( {setCurrentUser, currentUser}){
 				password,
                 newPassword
 			}
-            const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/secureaccount`, reqBody)
+            const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/secureaccount`, reqBody, options)
             const { token } = response.data
             localStorage.setItem("jwt", token)
             const decode = jwt_decode(token)
