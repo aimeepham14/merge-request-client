@@ -476,7 +476,7 @@ export default function Swipe({currentUser}) {
             
         
             <div className='dashboard'>
-                <div className='swipe-container bg-[#1C1C1C]'>
+                <div className='swipe-container h-auto bg-[#1C1C1C]'>
                     <div className='card-container bg-[#1C1C1C]'>
                     {users.map(user=> (
                         <TinderCard
@@ -492,9 +492,10 @@ export default function Swipe({currentUser}) {
                             //     <div style={{ textAlign:"left"  ,margin: '7vw', bottom: '7vh', position: 'absolute'}}className='font-code text-1xl text-primary'>Bio: {user.biography}</div>
                             //     <div style={{textAlign:"left", margin: '7vw', bottom: '1vh', position: 'absolute'}} className='font-code text-1xl text-primary'>Favorite Programming Language: {user.favoritePLanguage}</div>
                             // </div>:
-                            <div className="max-w-lg container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
-                                
-                                <img className="w-min cursor-pointer" src={user.photos}  alt="user profile pic" />
+                            <div className="max-w-lg container bg-white h-auto rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+                                <div className= "relative pb-11/12">
+                                <img className="absolute h-full w-full object-cover cursor-pointer " src={user.photos}  alt="user profile pic" />
+                                </div>
                                 <div className="flex p-4 justify-between">
                                     <div className="items-center space-x-2">
                                     <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {user.firstName}, {user.age} </h1>

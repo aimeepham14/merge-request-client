@@ -12,7 +12,7 @@ const NavBarMobile = ({showMenu, active, currentUser, handleLogout}) => {
 
         <li><Link to="/profile" onClick={showMenu} className={'text-yellow font-code text-3xl mr-10'}>Profile</Link></li>
         
-        <li><Link to="/aboutme" onClick={showMenu} className={'text-yellow font-code text-3xl mr-10'}>About Us</Link></li>
+        <li><Link to="/aboutus" onClick={showMenu} className={'text-yellow font-code text-3xl mr-10'}>About Us</Link></li>
 
         <li><Link to="/" ><span onClick={handleLogout} className={'text-yellow font-code text-3xl mr-10'}>Logout</span></Link></li>
 

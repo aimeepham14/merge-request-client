@@ -4,9 +4,20 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}", './src/components/pages/Welcome.jsx'
   ],
   theme: {
+    screens: {
+      xs: "375px",
+    
+    },
     extend: {
       fontFamily: {
         code: ['Source Code Pro', 'monospace'],
+      },
+      spacing: {
+        '2/3':'66.666667%',
+        '3/4': '75%',
+        '4/5': '80%',
+        '5/6': '83.333333%',
+        '11/12': '91.666667%',
       },
     },
     textColor: {
