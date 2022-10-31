@@ -3,10 +3,10 @@ export default function AboutMe(){
         window.open(url, '_blank', 'noopener,noreferrer');
       };
     return(
-        <div className="bg-[#1C1C1C]">
+        <div className="bg-[#1C1C1C] mx-auto max-w-screen h-screen">
             <div>
                 <p  className='text-primary text-4xl font-code pt-8 underline' >About Merge Request</p>
-                <p className='text-secondary text-2xl font-code bg-[#1C1C1C] pt-8' >Looking for friends? A soulmate? Look no further than Merge Request, an online connection app. We all know software engineers are focused and introverted so we made an application that make it easy to connect with others to help bring them out of their comfort zone. A dating app for developers to develop meaningful relationships.</p>
+                <p className='text-secondary ml-20 mr-20 text-2xl font-code bg-[#1C1C1C] pt-8' >Looking for friends? A soulmate? Look no further than Merge Request, an online connection app. We all know software engineers are focused and introverted so we made an application that make it easy to connect with others to help bring them out of their comfort zone. A dating app for developers to develop meaningful relationships.</p>
             </div>
             <div>
                 <p className="text-primary text-4xl font-code mt-8 underline" >Meet The Team</p>
