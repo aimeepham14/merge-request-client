@@ -8,14 +8,6 @@ export default function ChatBox({currentUser, selectedUser, usersMessages, other
     const userId = currentUser?.id
     const otherUserId = selectedUser?._id
 
-    const options = {
-		headers: {
-			'authorization': localStorage.getItem('jwt'),
-			'Accept' : 'application/json',
-			'Content-Type': 'application/json'
-		}
-	}
-
     const newMessage = async () => {
         const reqBody = {
             from: userId,
@@ -24,7 +16,7 @@ export default function ChatBox({currentUser, selectedUser, usersMessages, other
         }
 
         try {
-            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/messages/new`, reqBody, options)
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/messages/new`, reqBody)
             usersMessages()
             otherUsersMessages()
             setChat('')
