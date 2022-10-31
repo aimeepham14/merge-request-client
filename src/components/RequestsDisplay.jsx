@@ -57,6 +57,7 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
         try {
             const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${currentUser.id}/deletematch`, body)
             const response2 = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${match._id}deletematch`, body2)
+            console.log('DELETEING MATCH',response)
         }catch(err){
             console.log(err)
         }finally {
@@ -108,13 +109,13 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
                     </div> */}
 
                     <div className="min-h-screen bg-[#1C1C1C]  flex justify-center items-center">
-                    <div className="max-w-lg container bg-white rounded-xl shadow-slate-50  shadow-2xl transform transition duration-500 hover:scale-105 hover:shadow-2xl " onClick={() => setSelectedUser(match)}>
+                    <div className="max-w-lg container bg-white rounded-xl shadow-slate-50  shadow-2xl transform transition duration-500 hover:scale-105 hover:shadow-2xl ">
                         <div className= "relative pb-11/12">
-                        <img className="absolute h-full w-full object-cover cursor-pointer " src={match.photo} alt={`${match.name}'s pic`}/>
+                        <img className="absolute h-full w-full object-cover cursor-pointer " src={match.photo} alt={`${match.name}'s pic`} onClick={() => setSelectedUser(match)}/>
                         </div>
                         <div className="flex p-4 justify-between">
                             <div className="items-center space-x-2">
-                            <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {match.firstName}, {match.age} </h1>
+                            <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold" onClick={() => setSelectedUser(match)}> {match.firstName}, {match.age} </h1>
                             <h2 className="text-gray-800 cursor-pointer text-2xl mb-2  text-left font-code text-aqua"> 
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 inline-block mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
