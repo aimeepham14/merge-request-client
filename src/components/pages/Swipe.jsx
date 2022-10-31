@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import TinderCard from "react-tinder-card"
+// import UserProfile from "../UserProfile"
 import axios from "axios"
 
 export default function Swipe({currentUser}) {
@@ -13,15 +14,17 @@ export default function Swipe({currentUser}) {
     const [distance, setDistance] = useState('')
     const [usersDistance, setUsersDistance] = useState([])
 
+
     // SAVE THE USER ID THAT APPEARS ON SWIPE
     const [selectedUser, setSelectedUser] = useState('')
     // SAVE THE USER PROFILE THAT APPEARS ON SWIPE
-    const [checkUser, setCheckUser] = useState([])
+    const [checkUser, setCheckUSer] = useState([])
 
     useEffect(() => {
         const getUser = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`)
+                console.log(response.data)
                 const responseData = {
                     biography: response.data.biography,
                     birthDay: response.data.birthDay,
@@ -51,10 +54,13 @@ export default function Swipe({currentUser}) {
         getUser()
     }, [userId])
 
+
     const getAllUsers = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users`)
             const responseData = response.data
+            console.log('DATA FROM BACKEND',responseData)
+            
           
             const info = responseData.map((data)=> {
                 return({
@@ -75,7 +81,20 @@ export default function Swipe({currentUser}) {
                 }
                 )
             })
+            console.log('SAVED INFO DATA', info)
             setUsers(info)
+            // console.log(users)
+            
+            
+            
+            // const test = users.map((data) => {
+            //     return{
+            //         user: data.id,
+            //         city: data.city
+            //     }
+            // })
+            // console.log("test", test)
+            
         } catch(err) {
             console.warn(err)
         }
@@ -85,11 +104,28 @@ export default function Swipe({currentUser}) {
         getAllUsers()
     },[])
 
+    // useEffect(() => {
+    //     const getDistance = async(e) => {
+    //         try {
+    //             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/api`)
+    //             console.log(response.data)
+
+    //         } catch(err) {
+    //             console.warn(err)
+    //         }
+    //     } 
+    //     getDistance()
+    // }, [])
+    const test = 1
+
     useEffect(() => {
         const distances = async () => {
+            
             try {
+                
                 const getDistance = users.map(async (data) => {
                     const distance = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/api`, {params: { usersCities: data.location, userCity: currentUser.location}})
+                    console.log(distance)
                     const miles = Math.round(distance.data.distance / 1.609)
                     return({
                         id: data.id,
@@ -107,9 +143,17 @@ export default function Swipe({currentUser}) {
                         favoritePLanguage: data.favoritePLanguage,
                         distance: miles
                     })   
+                    
                 })
-                const promiseValues = await Promise.all(getDistance)
+
+                
+                    // Promise.allSettled(getDistance).then((results) => results.forEach((result) => setUserDistance(...result.value)))
+                    
+                const promiseValues = await Promise.all(getDistance);
+                console.log("PROMISES MADE", promiseValues)
+                
                 setUsersDistance(promiseValues)
+        
             } catch(err){
                 console.warn(err)
             }
@@ -117,7 +161,6 @@ export default function Swipe({currentUser}) {
         distances()
     },[distance])
 
-    // gets the user that is shown
     useEffect(()=> {
         const getSelectedUser = async() => {
             try{
@@ -129,6 +172,7 @@ export default function Swipe({currentUser}) {
 						}
 					}
                 const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${selectedUser}`, options)
+                console.log('getting one user', response)
                 const data = response.data
                 const info = {
                     id: data._id,
@@ -143,16 +187,20 @@ export default function Swipe({currentUser}) {
                     biography: data.biography,
                     favoritePLanguage: data.favoritePLanguage
                 }
-            setCheckUser(info)
+            setCheckUSer(info)
+            console.log('CHECKED USER ARRAY', info) 
             }catch(err){
-                console.warn(err)
+                console.log(err)
             }
         }
         getSelectedUser()
         if (lastDirection == 'right') {
             handlePull()
+            console.log('HANDLING PULL')
         } else if (lastDirection == 'left'){
             handlePush()
+            console.log('HANDLING PUSH')
+
         }
     },[selectedUser])
 
@@ -166,6 +214,7 @@ export default function Swipe({currentUser}) {
                     otherperson: currentUser.email
                 }
                 if (checkUser.likedUsers.includes(currentUser.id)){
+                    console.log('TRUE')
                     const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${currentUser.id}/addmatch`, body)
                     const response2 = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${checkUser.id}/addmatch`, body2)
                     console.log(response, response2)
@@ -180,78 +229,162 @@ export default function Swipe({currentUser}) {
         compareUsersLikedArray()
     }, [checkUser])
 
-    // pushes user to the rejected users array
+
+    // it just adds it to the rejected array for now
     const handlePush = async () => {
+        console.log( 'PUSHING')
         try {
             const body = {
                 rejectedUsers: selectedUser
             }
+            // console.log(e.target.value)
             await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/rejected`, body)
         } catch(err) {
             console.warn(err)
         }
     }
-    
-    // pushes user to the liked users array
+    // it just adds it to the liked array for now
     const handlePull = async () => {
+        console.log( 'PULLING')
+        // console.log('ONE USERS ID',selectedUser)
         try {
             const body = {
                 likedUsers: selectedUser
             }
+            console.log('ONEUSERID', body)
+            // console.log(e.target.value)
             await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/liked`, body)
         } catch(err) {
             console.warn(err)
         }
     }
 
+    // const setVariables = (direction, id) => {
+    //     setLastDirection(direction)
+    //     setSelectedUser(id)
+    // }
+
     const swiped = (direction, name, id) => {
+        // const response = await setVariables(direction, id)
+        console.log(name + 'swiped '+ direction)
+        console.log(direction)
+        console.log(id)
         setLastDirection(direction)
         setSelectedUser(id)
+        // setLastDirection(direction)
+        console.log('IS DIRECTION SHOWING UP?',lastDirection)
+        // setSelectedUser(id)
+    //     if(lastDirection == 'left'){
+    //         handlePush()
+    //     }
+    //     else if(lastDirection == 'right'){
+    //         handlePull()
+    //     }
     }
     
     const outOfFrame = (name) => {
         console.log(name + 'out of screen!')
     }
 
-    // handles filters users by preference
+    // const allUsers = users.map((user) => {
+    //     return(
+            
+    //         <div>
+    //             {props.currentUser.id !== user.id ? 
+    //             <div class="p-10 bg-gray-700 flex justify-center items-center">
+    //                 <div class="max-w-lg container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+                        
+    //                 <div class="mt-2 ml-4 font-bold text-gray-800 cursor-pointer hover:text-gray-900 transition duration-100 text-6xl font-code text-orange">{users[count].firstName} {users[count].lastName}</div>
+    //                 <div>Favorite Programming Language: {users[count].favoritePLanguage}</div>
+    //                 <div className="flex">
+    //                     <img className="mx-auto max-w-md max-h-md" src={users[count].photos} alt={`pic of ${users[count].firstName}`}></img>
+    //                 </div>
+    //                 <button onClick={handlePush} value={users[count].id}>Push</button>
+    //                 <button onClick={handlePull} value={users[count].id}>Pull</button> 
+    //                 </div>
+    //             </div>
+    //             : 
+    //             <div></div>
+    //             }
+    //         </div>
+            
+    //     )       
+    // })
+
+    // useEffect(() => {
+    //     const getLookingForUsers = async () => {
+    //         try {
+    //             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/lookingfor`)
+    //             console.log(response.data)
+    //             const responseData = response.data
+    //             const info = responseData.map((data)=> {
+    //                 return({
+    //                     id: data._id,
+    //                     firstName: data.firstName,
+    //                     lastName: data.lastName,
+    //                     matchedUsers: data.matchedUsers,
+    //                     likedUsers: data.likedUsers,
+    //                     rejectedUsers: data.rejectedUsers,
+    //                     photos: data.photo,
+    //                     favoritePLanguage: data.favoritePLanguage
+    //                 }
+    //                 )
+    //             })
+    //             console.log('RESETTING USERS FROM PREFERENCE',info)
+    //             setUsers(info)
+    //         } catch(err) {
+    //             console.warn(err)
+    //         }
+    //     }
+    //     getLookingForUsers()
+    // },[])
+
     const handlePreference = async (e) => {
         e.preventDefault()
         try {
     
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/lookingfor/${lookingFor}`)
-            const responseData = response.data
-            const info = responseData.map((data)=> {
-                return({
-                    id: data._id,
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    matchedUsers: data.matchedUsers,
-                    likedUsers: data.likedUsers,
-                    rejectedUsers: data.rejectedUsers,
-                    photos: data.photo,
-                    age: data.age,
-                    biography: data.biography,
-                    favoritePLanguage: data.favoritePLanguage
+                console.log("lookingFor", lookingFor)
+                console.log("response", response)
+
+                const responseData = response.data
+                const info = responseData.map((data)=> {
+                    return({
+                        id: data._id,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                        matchedUsers: data.matchedUsers,
+                        likedUsers: data.likedUsers,
+                        rejectedUsers: data.rejectedUsers,
+                        photos: data.photo,
+                        location: data.location,
+                        city: data.city,
+                        state: data.state,
+                        age: data.age,
+                        biography: data.biography,
+                        favoritePLanguage: data.favoritePLanguage
+                    })
                 })
-            })
-            setUsers(info)
+                console.log('RESETTING USERS FROM PREFERENCE',info)
+                setUsers(info)
         } catch(err) {
             console.warn(err)
         }
     }
 
-    // pushes users that are in filter range to the users
     const handleDistance = async (e) => {
         e.preventDefault()
         try {
             const filtered = []
             for (let i = 0; i < users.length; i ++) {
                 if (usersDistance[i].distance <= distance) {
-                    filtered.push(users[i])      
+                    filtered.push(users[i])
+                    
                 } else {
                     continue
                 }
             }
+            console.log(filtered)
             setUsers(filtered)
             
         } catch(err) {
@@ -259,10 +392,52 @@ export default function Swipe({currentUser}) {
         }
     }
 
-    // resets distance filter
     const handleResetDistance = async(e) => {
         window.location.reload(false);
     }
+
+    const swipedUsers = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`)
+        
+            const ids = users.map((user) => {
+                return (
+                    user.id
+                )
+            })
+   
+            // const likedOut = ids.filter(user => response.data.likedUsers.includes(user)) 
+            const likedOut = await ids.filter(function(obj) { return response.data.likedUsers.indexOf(obj) == -1; })
+
+            const rejectedOut = await likedOut.filter(function(obj) { return response.data.rejectedUsers.indexOf(obj) == -1; })
+            console.log("rejectedOut", rejectedOut)
+            
+        } catch(err) {
+            console.warn(err)
+        }  
+    }
+
+    // const swipedUsers = users.map((user) => {
+    //     try {
+    //         const ids = users.map((user) => {
+    //             return (
+    //                 user.id
+    //             )
+    //         })
+    //         const response = axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`)
+    //         const likedOut = ids.filter(function(obj) { return response.data.likedUsers.indexOf(obj) == -1; })
+
+    //         const rejectedOut = likedOut.filter(function(obj) { return response.data.rejectedUsers.indexOf(obj) == -1; })
+            
+    //     } catch(err) {
+    //         console.warn(err)
+    //     }
+    //     return (
+    //         <div>{user.rejectedOut}</div>
+            
+    //     )
+    // })
+    
 
     const blankCard = <div>No More Matches</div>
 
@@ -294,9 +469,10 @@ export default function Swipe({currentUser}) {
                 <button className=" px-6 py-3 mt-8 text-sm ml-5 font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" type="submit">Filter</button>
                 <button className=" px-6 py-3 mt-8 text-sm ml-5 font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-yellow-300 hover:bg-yellow-500 hover:shadow-lg focus:outline-none" onClick={handleResetDistance}>Reset</button>
             </form>
+            
         
             <div className='dashboard'>
-                <div className='swipe-container h-auto bg-[#1C1C1C]'>
+                <div className='swipe-container bg-[#1C1C1C]'>
                     <div className='card-container bg-[#1C1C1C]'>
                     {users.map(user=> (
                         <TinderCard
@@ -306,14 +482,19 @@ export default function Swipe({currentUser}) {
                         onSwipe={dir => swiped(dir, user.firstName, user.id)}
                         onCardLeftScreen={() => outOfFrame(user.firstName)}>
                             {currentUser.id !== user.id && !swiper?.likedUsers?.includes(user.id) && !swiper?.rejectedUsers?.includes(user.id) ? 
-                            <div className="max-w-lg container bg-white h-auto rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
-                                <div className= "relative pb-11/12">
-                                <img className="absolute h-full w-full object-cover cursor-pointer " src={user.photos}  alt="user profile pic" />
-                                </div>
+                            // <div className='card relative mb-6' style={{backgroundImage: `url(${user.photos})`}}>
+                            //     <div style={{marginTop: '50px'}} className='font-code text-2xl text-primary'>{user.firstName}, {user.age}</div>
+                            //     <div className='font-code text-2xl text-primary'>{user.location}</div>
+                            //     <div style={{ textAlign:"left"  ,margin: '7vw', bottom: '7vh', position: 'absolute'}}className='font-code text-1xl text-primary'>Bio: {user.biography}</div>
+                            //     <div style={{textAlign:"left", margin: '7vw', bottom: '1vh', position: 'absolute'}} className='font-code text-1xl text-primary'>Favorite Programming Language: {user.favoritePLanguage}</div>
+                            // </div>:
+                            <div className="max-w-lg container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+                                
+                                <img className="w-min cursor-pointer" src={user.photos} style={{width: '300px'}} alt="user profile pic" />
                                 <div className="flex p-4 justify-between">
                                     <div className="items-center space-x-2">
-                                    <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {user.firstName}, {user.age} </h1>
-                                    <h2 className="text-gray-800 cursor-pointer text-2xl mb-2  text-left font-code text-aqua"> 
+                                        <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {user.firstName}, {user.age} </h1>
+                                        <h2 className="text-gray-800 cursor-pointer text-2xl mb-2  text-left font-code text-aqua"> 
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 inline-block mr-2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
