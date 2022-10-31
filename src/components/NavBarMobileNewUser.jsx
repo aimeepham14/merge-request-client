@@ -13,5 +13,4 @@ const NavBarMobileNewUser = ({showMenu, active, currentUser, handleLogout}) => {
     </ul>
   )
 }
-
 export default NavBarMobileNewUser
