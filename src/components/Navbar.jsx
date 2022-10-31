@@ -1,37 +1,46 @@
 import { Link, useParams } from 'react-router-dom'
-
+import { useState } from 'react'
+import NavBarMobile from './NavBarMobile'
+import NavBarMobileNewUser from './NavBarMobileNewUser'
 
 export default function Navbar({ currentUser, handleLogout }) {
 	const { userId } = useParams()
-	
+	const [active, setActive] = useState(false)
+
+	const showMenu = () => {
+        setActive(!active)
+    }
+
 	 const loggedIn = () => {
 		return(
 		<>
 			{/* if the user is logged in... */}
-			<div class="md: flex flow-root">
-				<div class="float-left">
-					<Link to="/" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-						<p>Home</p>
-					</Link>
-					<Link to={`/swipe/${currentUser.id}`} class="mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-						swipe
-					</Link>
 
-					<Link to="/requests" class="mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-						requests
-					</Link>
-				</div>
-				<div class="float-right">
-					<Link to="/profile" class="mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10 pl-10">
-						profile
-					</Link>
-
-					<Link to="/" class=" mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-4">
-						<span onClick={handleLogout}>logout</span>
-					</Link>
-				</div>
+			<div className='right-6 lg:hidden top-6 scale-150' style={{alignItems:'center'}} onClick={showMenu} >
+                <img src='/HamburgerMenu.png' style={{height: '50px', marginLeft:'39vw'}} className='scale-20 cursor-pointer'/>
+            </div>
+			
+			<div className="lg:flex sm:hidden flex-grow items-center" id="example-navbar-warning">
+						<Link to="/" className="text-3xl font-code leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-yellow">Merge Request</Link>
+						<Link to="/aboutus" className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">About <img src='/favicon.ico' style={{height: '25px'}}></img></Link>
+				<ul className="flex flex-col lg:flex-row list-none ml-auto">
+					<li className="nav-item">
+						<Link to={`/swipe/${currentUser.id}`} className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">Swipe</Link>
+					</li>
+					<li className="nav-item">
+						<Link to="/requests" className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">Requests</Link>
+					</li>
+					<li className="nav-item">
+					</li>
+					<li className="nav-item">
+					<Link to="/profile" className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">Profile</Link>
+					</li>
+					<li className="nav-item">
+					<Link to="/" className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75"><span onClick={handleLogout}>Logout</span></Link>
+					</li>
+				</ul>
 			</div>
-
+			<NavBarMobile showMenu={showMenu} active={active} currentUser={currentUser} handleLogout={handleLogout}/>
 			
 		</>
 		)
@@ -40,17 +49,25 @@ export default function Navbar({ currentUser, handleLogout }) {
 	 const loggedOut = () => {
 		return(
 		<>
+		<div className='right-6 md:hidden top-6 scale-150' style={{alignItems:'center'}} onClick={showMenu} >
+                <img src='/HamburgerMenu.png' style={{height: '50px', marginLeft:'39vw'}} className='scale-20 cursor-pointer'/>
+            </div>
 			{/* if the user is not logged in... */}
-			<Link to="/" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-				<p>Home</p>
-			</Link>
-			<Link to="/register" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-				Sign-Up
-			</Link>
-
-			<Link to="/login" class="block mt-4 lg:inline-block lg:mt-0 text-yellow font-code text-3xl mr-10">
-				Login
-			</Link>
+			<div className="lg:flex flex-grow items-center" id="example-navbar-warning">
+			<div className='hidden md:flex flow-root'>
+			<ul className="flex flex-col lg:flex-row list-none ml-auto">
+			<li className="nav-item">
+				<Link to="/" className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">MergeRequest</Link>
+			</li>
+				<Link to="/register" className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">Sign-Up</Link>
+			<li className="nav-item">
+				<Link to="/login" className="px-3 py-2 flex items-center uppercase font-code text-2xl leading-snug text-yellow hover:opacity-75">Login</Link>
+			</li>
+			</ul>
+			</div>
+			</div>
+			
+			<NavBarMobileNewUser showMenu={showMenu} active={active} currentUser={currentUser} handleLogout={handleLogout}/>
 		</>
 	 	)
 	 }
