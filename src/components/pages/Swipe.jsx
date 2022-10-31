@@ -19,14 +19,7 @@ export default function Swipe({currentUser}) {
     const [selectedUser, setSelectedUser] = useState('')
     // SAVE THE USER PROFILE THAT APPEARS ON SWIPE
     const [checkUser, setCheckUSer] = useState([])
-    const options = {
-		headers: {
-			'authorization': localStorage.getItem('jwt'),
-			'Accept' : 'application/json',
-			'Content-Type': 'application/json'
-		}
-	}
-
+   
     useEffect(() => {
         const getUser = async () => {
             try {

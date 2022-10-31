@@ -63,18 +63,10 @@ export default function EditProfile(props) {
 
     // console.log("decode", decode)
 
-    const options = {
-		headers: {
-			'authorization': localStorage.getItem('jwt'),
-			'Accept' : 'application/json',
-			'Content-Type': 'application/json'
-		}
-	}
-
     useEffect(() => {
         const getUser = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`, options)
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`)
                 console.log(response.data)
                 setForm(response.data)
             } catch(err) {
@@ -151,7 +143,7 @@ export default function EditProfile(props) {
             const token = localStorage.getItem('jwt')
             const decoded = jwt_decode(token)
             let userId = decoded.id
-            await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/edit`, {data: {userId, id}}, options)
+            await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}/edit`, {data: {userId, id}})
             const thisUser ={...props.currentUser}
             props.setCurrentUser(thisUser)
             props.handleLogout()
