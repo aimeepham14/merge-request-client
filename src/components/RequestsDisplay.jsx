@@ -11,14 +11,6 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
     const [matchSelected, setMatchSelected] = useState([])
     const navigate = useNavigate()
 
-    const options = {
-		headers: {
-			'authorization': localStorage.getItem('jwt'),
-			'Accept' : 'application/json',
-			'Content-Type': 'application/json'
-		}
-	}
-
     useEffect(() => {
         const allMatches = async () => {
             try{
@@ -63,8 +55,8 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
             otherperson: currentUser.email
         }
         try {
-            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${currentUser.id}/deletematch`, body, options)
-            const response2 = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${match._id}deletematch`, body2, options)
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${currentUser.id}/deletematch`, body)
+            const response2 = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${match._id}deletematch`, body2)
         }catch(err){
             console.log(err)
         }finally {
