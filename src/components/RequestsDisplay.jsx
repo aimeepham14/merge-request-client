@@ -117,8 +117,9 @@ export default function RequestsDisplay( {currentUser, setSelectedUser} ) {
 
                     <div className="min-h-screen bg-[#1C1C1C]  flex justify-center items-center">
                     <div className="max-w-lg container bg-white rounded-xl shadow-slate-50  shadow-2xl transform transition duration-500 hover:scale-105 hover:shadow-2xl " onClick={() => setSelectedUser(match)}>
-                        
-                        <img className="w-min cursor-pointer" src={match.photo} alt={`${match.name}'s pic`}/>
+                        <div className= "relative pb-11/12">
+                        <img className="absolute h-full w-full object-cover cursor-pointer " src={match.photo} alt={`${match.name}'s pic`}/>
+                        </div>
                         <div className="flex p-4 justify-between">
                             <div className="items-center space-x-2">
                             <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {match.firstName}, {match.age} </h1>
