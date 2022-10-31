@@ -22,6 +22,12 @@ export default function EditProfile(props) {
 	const [autocompleteStates, setAutocompleteStates] = useState([]);
   	const [autocompleteErr, setAutocompleteErr] = useState("");
 
+      const states = [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
+	  'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
+	  'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
+	  'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
+	  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
+
     // fetches the autocomplete api
     const fetchPlace = async (text) => {
 		try {
@@ -43,17 +49,13 @@ export default function EditProfile(props) {
 	  };
       // sets the state autocomplete
 	  const handleStateChange = async (e) => {
+        // console.log(form.state)
+
         setForm({...form, state: e.target.value})
 		!autocompleteStates.includes(e.target.value) &&
 		  setAutocompleteStates(states);
+          console.log(autocompleteStates)
 	  };
-
-
-    const states = [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
-	  'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
-	  'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
-	  'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
-	  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
 
 
     // gets user data
@@ -176,9 +178,8 @@ export default function EditProfile(props) {
                 <label className="block uppercase text-m font-code text-db mb-2" htmlFor="city">
                     City
                 </label>
-                <input list='cities' type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.city} id="city" onChange={handleCityChange} pattern={autocompleteCities.join("|")}
-            		autoComplete="on" required/>
-					<datalist id="cities">
+                <input list='cities' type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.city} id="city" onChange={handleCityChange} pattern={autocompleteCities.join("|")} autoComplete="on" required/>
+				<datalist id="cities">
 				{autocompleteCities.map((city, i) => (
 				<option key={i}>{city}</option>
 				))}
@@ -190,7 +191,7 @@ export default function EditProfile(props) {
                 <label className="block uppercase text-m font-code text-db mb-2" htmlFor="state">
                     State
                 </label>
-                <input lists='state' type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.state} id="state" onChange={handleStateChange} pattern={autocompleteStates.join("|")} autoComplete="on" required/>
+                <input list='states' type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value={form.state} id="state" onChange={handleStateChange} pattern={autocompleteStates.join("|")} autoComplete="on" required/>
 				<datalist id="states">
 				{autocompleteStates.map((state, i) => (
 				<option key={i}>{state}</option>
