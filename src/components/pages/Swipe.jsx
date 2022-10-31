@@ -357,6 +357,9 @@ export default function Swipe({currentUser}) {
                         likedUsers: data.likedUsers,
                         rejectedUsers: data.rejectedUsers,
                         photos: data.photo,
+                        location: data.location,
+                        city: data.city,
+                        state: data.state,
                         age: data.age,
                         biography: data.biography,
                         favoritePLanguage: data.favoritePLanguage
@@ -469,7 +472,7 @@ export default function Swipe({currentUser}) {
             
         
             <div className='dashboard'>
-                <div className='swipe-container h-auto bg-[#1C1C1C]'>
+                <div className='swipe-container bg-[#1C1C1C]'>
                     <div className='card-container bg-[#1C1C1C]'>
                     {users.map(user=> (
                         <TinderCard
@@ -485,14 +488,13 @@ export default function Swipe({currentUser}) {
                             //     <div style={{ textAlign:"left"  ,margin: '7vw', bottom: '7vh', position: 'absolute'}}className='font-code text-1xl text-primary'>Bio: {user.biography}</div>
                             //     <div style={{textAlign:"left", margin: '7vw', bottom: '1vh', position: 'absolute'}} className='font-code text-1xl text-primary'>Favorite Programming Language: {user.favoritePLanguage}</div>
                             // </div>:
-                            <div className="max-w-lg container bg-white h-auto rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
-                                <div className= "relative pb-11/12">
-                                <img className="absolute h-full w-full object-cover cursor-pointer " src={user.photos}  alt="user profile pic" />
-                                </div>
+                            <div className="max-w-lg container bg-white rounded-xl shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+                                
+                                <img className="w-min cursor-pointer" src={user.photos} style={{width: '300px'}} alt="user profile pic" />
                                 <div className="flex p-4 justify-between">
                                     <div className="items-center space-x-2">
-                                    <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {user.firstName}, {user.age} </h1>
-                                    <h2 className="text-gray-800 cursor-pointer text-2xl mb-2  text-left font-code text-aqua"> 
+                                        <h1 className="text-gray-800 cursor-pointer text-4xl mb-1  text-left font-code text-secondary font-bold "> {user.firstName}, {user.age} </h1>
+                                        <h2 className="text-gray-800 cursor-pointer text-2xl mb-2  text-left font-code text-aqua"> 
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 inline-block mr-2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
