@@ -14,28 +14,28 @@ export default function AboutMe(){
             <div style={{display: 'flex', alignItems:'center', justifyContent: 'center'}}>
                 <div className="mt-6 w-fit mx-auto" style={{margin:'50px'}}>
                     <p className="font-code text-2xl mb-3 text-[#FFFFFF]">TYLER</p>
-                    <img className="rounded-full w-56 " src={'https://i.imgur.com/we6rSEA.png'}></img>
+                    <img className="rounded-full w-56 " src={'https://i.imgur.com/we6rSEA.png'} alt="Tyler"></img>
                     <div style={{display: 'flex', alignItems:'', justifyContent: 'center'}}>
-                        <img src={'/githublogo.png'} style={{height: '100px'}} onClick={()=> openInNewTab('https://github.com/tylerchan33')}></img>
-                        <img src={'linkedinlogo.png'} style={{height: '82px', margin:'9px'}} onClick={()=> openInNewTab('https://www.linkedin.com/in/tylerchan33/')}></img>
+                        <img src={'/githublogo.png'} style={{height: '100px'}} onClick={()=> openInNewTab('https://github.com/tylerchan33')} alt="Github logo"></img>
+                        <img src={'linkedinlogo.png'} style={{height: '82px', margin:'9px'}} onClick={()=> openInNewTab('https://www.linkedin.com/in/tylerchan33/')} alt="LinkedIn Logo"></img>
                     </div>
                     <p></p>
                 </div>
                 <div className="mt-6 w-max mx-auto"  style={{margin:'50px'}}>
                     <p className="font-code text-2xl mb-3 text-[#FFFFFF]">AIMEE</p>
-                    <img className="rounded-full w-56 " src={'https://i.imgur.com/tpyeZS0.jpg'}></img>
+                    <img className="rounded-full w-56 " src={'https://i.imgur.com/tpyeZS0.jpg'} alt="Aimee"></img>
                     <div style={{display: 'flex', alignItems:'', justifyContent: 'center'}}>
-                        <img src={'/githublogo.png'} style={{height: '100px'}} onClick={()=> openInNewTab('https://github.com/aimeepham14')}></img>
-                        <img src={'linkedinlogo.png'} style={{height: '82px', margin:'9px'}} onClick={()=> openInNewTab('https://www.linkedin.com/in/aimee-pham/')}></img>
+                        <img src={'/githublogo.png'} style={{height: '100px'}} onClick={()=> openInNewTab('https://github.com/aimeepham14')}  alt="Github logo"></img>
+                        <img src={'linkedinlogo.png'} style={{height: '82px', margin:'9px'}} onClick={()=> openInNewTab('https://www.linkedin.com/in/aimee-pham/')} alt="LinkedIn Logo"></img>
                     </div>
                     <p></p>
                 </div>
                 <div className="mt-6 w-max mx-auto"  style={{margin:'50px'}}>
                     <p className="font-code text-2xl mb-3 text-[#FFFFFF]">STEPHEN</p>
-                    <img className="rounded-full w-56 " src={'https://i.imgur.com/NKbIQYl.png'}></img>
+                    <img className="rounded-full w-56 " src={'https://i.imgur.com/NKbIQYl.png'} alt="Stephen"></img>
                     <div style={{display: 'flex', alignItems:'', justifyContent: 'center'}}>
-                        <img src={'/githublogo.png'} style={{height: '100px'}} onClick={()=> openInNewTab('https://github.com/syorn96')}></img>
-                        <img src={'linkedinlogo.png'} style={{height: '82px', margin:'9px'}} onClick={()=> openInNewTab('https://www.linkedin.com/in/stephenyorn/')}></img>
+                        <img src={'/githublogo.png'} style={{height: '100px'}} onClick={()=> openInNewTab('https://github.com/syorn96')} alt="Github logo"></img>
+                        <img src={'linkedinlogo.png'} style={{height: '82px', margin:'9px'}} onClick={()=> openInNewTab('https://www.linkedin.com/in/stephenyorn/')} alt="LinkedIn Logo"></img>
                     </div>
                     <p></p>
                 </div>

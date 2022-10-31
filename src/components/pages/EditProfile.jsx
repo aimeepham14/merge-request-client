@@ -22,9 +22,9 @@ export default function EditProfile(props) {
 	const [autocompleteStates, setAutocompleteStates] = useState([]);
   	const [autocompleteErr, setAutocompleteErr] = useState("");
 
+    // fetches the autocomplete api
     const fetchPlace = async (text) => {
 		try {
-			// console.log(process.env.REACT_APP_MAP_API_KEY)
 		  const res = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${text}.json?access_token=${process.env.REACT_APP_MAP_API_KEY}&autocomplete=true`);
 		  if (!res.ok) throw new Error(res.statusText);
 		  return await res.json();
@@ -32,24 +32,18 @@ export default function EditProfile(props) {
 		  return { error: "Unable to retrieve places" };
 		}
 	  };
+    // sets the city autocomplete
 	const handleCityChange = async (e) => {
-		// setCity(e.target.value);
         setForm({...form, city: e.target.value})
-		// if (!city) return;
-	
 		const res = await fetchPlace(form.city);
-		console.log(res)
 		!autocompleteCities.includes(e.target.value) &&
 		  res.features &&
 		  setAutocompleteCities(res.features.map((place) => place.text));
 		res.error ? setAutocompleteErr(res.error) : setAutocompleteErr("");
 	  };
-
+      // sets the state autocomplete
 	  const handleStateChange = async (e) => {
         setForm({...form, state: e.target.value})
-		// setState(e.target.value);
-		// if (!state) return;
-	
 		!autocompleteStates.includes(e.target.value) &&
 		  setAutocompleteStates(states);
 	  };
@@ -61,13 +55,12 @@ export default function EditProfile(props) {
 	  'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
 	  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
 
-    // console.log("decode", decode)
 
+    // gets user data
     useEffect(() => {
         const getUser = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${userId}`)
-                console.log(response.data)
                 setForm(response.data)
             } catch(err) {
                 console.warn(err)
@@ -83,6 +76,7 @@ export default function EditProfile(props) {
         setForm({...form, location: `${form.city},${form.state}`})
     },[form.state])
 
+    // uploads image to cloudinary
     const uploadImage = async e => {
 		const files = e.target.files[0];
 		const formData = new FormData();
@@ -91,16 +85,13 @@ export default function EditProfile(props) {
 			setLoading(true)
 			try {
 				const response = await axios.post(`https://api.cloudinary.com/v1_1/dspcnzoiy/image/upload`,formData)
-				console.log(response.data)
 				setForm({...form, photo: response.data.url})
-				// console.log(photos)
 			}catch(err){
 				console.warn(err)
 			}
 	}
-
     
-    
+    // submits form with updated data
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
@@ -115,13 +106,7 @@ export default function EditProfile(props) {
         }
     }
 
-    // const handleStateChange = async (e) => {
-       
-    // }
-    // const handleCityChange = async (e) => {
-        
-    // }
-
+    // shows modal for deleting profile
     const handleModal = async (e) => {
         e.preventDefault()
         try {
@@ -131,13 +116,13 @@ export default function EditProfile(props) {
         }
     }
 
+    // birth year options
     const birthYearOptions = [] 
-	
 		for (var i = 2004; i >= 1922; i--) {
 			birthYearOptions.push(<option value={i}>{i}</option>)
 		}
 
-
+    // handles delete of account
     const handleDelete = async (id) => {
         try {
             const token = localStorage.getItem('jwt')
@@ -148,12 +133,10 @@ export default function EditProfile(props) {
             props.setCurrentUser(thisUser)
             props.handleLogout()
             navigate(`/`)
-            
         } catch (err) {
             console.warn(err)
         }
     }
-
 
     return(
     <section className=" py-1 bg-[#1C1C1C]">
@@ -216,7 +199,6 @@ export default function EditProfile(props) {
 					</div>
 				</div>
 
-
             <div className="w-full lg:w-4/12 px-4">
                 <div className="relative w-full mb-3">
                 <label className="block uppercase text-m font-code text-db mb-2" for="birthMonth">
@@ -244,6 +226,7 @@ export default function EditProfile(props) {
                 <label className="block uppercase text-m font-code text-db mb-2" for="birthDay">
                     Birth Day
                 </label>  
+                {/* makes it so that birth dates cannot be dates that do not exist */}
                         {form.birthMonth == 2 && form.birthYear % 4 == 0
                         ? 
                         <div>
@@ -403,7 +386,6 @@ export default function EditProfile(props) {
                 </div>
             </div>
 
-
             </div>
 
             <hr className="mt-6 border-b-1 border-blueGray-300"/>
@@ -422,7 +404,7 @@ export default function EditProfile(props) {
                         <label htmlFor='gender' className='font-code2 text-yellow'>
                             <input
                             type="radio"
-                            id="Gender"
+                            id="manGender"
                             name="Gender"
                             onChange={e => setForm({...form, gender: e.target.value})}
                             value="Man"
@@ -433,7 +415,7 @@ export default function EditProfile(props) {
                         <label htmlFor='gender' className='font-code2 text-yellow'>
                             <input
                             type="radio"
-                            id="Gender"
+                            id="womanGender"
                             name="Gender"
                             onChange={e => setForm({...form, gender: e.target.value})}
                             value="Woman"
@@ -444,7 +426,7 @@ export default function EditProfile(props) {
                         <label htmlFor='gender' className='font-code2 text-yellow'>
                             <input
                             type="radio"
-                            id="Gender"
+                            id="moreGender"
                             name="Gender"
                             onChange={e => setForm({...form, gender: e.target.value})}
                             value="More"
@@ -577,7 +559,6 @@ export default function EditProfile(props) {
             id="delete"
             className="w-52 px-6 py-3 mt-3 ml-2 text-lg font-code text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-[#F23D41] hover:bg-red-800 hover:shadow-lg focus:outline-none" style={{color: 'rgb(255,255,255)'}} onClick = {handleModal}
             >
-                {/* onClick={() => handleDelete(`${props.currentUser._id}`)} */}
             Delete Profile
             </button>
             <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
